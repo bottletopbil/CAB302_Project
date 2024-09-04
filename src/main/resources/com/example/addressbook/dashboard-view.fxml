@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.addressbook.DashboardController"
+      prefHeight="400.0" prefWidth="600.0">
+
+    <!-- Toolbar at the top -->
+    <ToolBar>
+        <Button text="Home" onAction="#showHome" fx:id="homeButton"/>
+        <Button text="Items" onAction="#showItems" fx:id="itemsButton"/>
+        <Button text="Reports" onAction="#showReports" fx:id="reportsButton"/>
+        <Button text="Quick Add" onAction="#showQuickAdd" fx:id="quickAddButton"/>
+    </ToolBar>
+
+    <!-- Main content area -->
+    <AnchorPane fx:id="mainContentArea" prefHeight="350.0" prefWidth="600.0">
+        <!-- Content will be dynamically added here -->
+    </AnchorPane>
+</VBox>
