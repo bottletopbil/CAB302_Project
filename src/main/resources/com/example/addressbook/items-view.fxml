@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<SplitPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.example.addressbook.ItemsController"
+           orientation="HORIZONTAL"
+           prefHeight="400.0" prefWidth="600.0"
+           dividerPositions="0.15"> <!-- Set divider position to 15% -->
+
+    <!-- Left side menu -->
+    <VBox fx:id="sideMenu" prefWidth="200.0" spacing="10" style="-fx-background-color: #2C2F33;">
+        <Label text="All Folders" style="-fx-font-size: 10px; -fx-text-fill: white;"/>
+        <!-- Example menu items -->
+        <Label text="Rooms" style="-fx-text-fill: white;"/>
+        <Label text="Tags" style="-fx-text-fill: white;"/>
+        <Label text="Drafts" style="-fx-text-fill: white;"/>
+        <Label text="Junk" style="-fx-text-fill: white;"/>
+        <Label text="Trash" style="-fx-text-fill: white;"/>
+    </VBox>
+
+    <!-- Main content area -->
+    <AnchorPane fx:id="mainContentArea" prefWidth="400.0">
+        <!-- Content will go here -->
+    </AnchorPane>
+</SplitPane>

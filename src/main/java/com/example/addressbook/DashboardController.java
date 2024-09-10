@@ -1,9 +1,12 @@
 package com.example.addressbook;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.SplitPane; // Correct import for SplitPane
+import java.io.IOException;
 
 public class DashboardController {
 
@@ -38,10 +41,18 @@ public class DashboardController {
 
     @FXML
     private void showItems() {
-        mainContentArea.getChildren().clear();
-        Label label = new Label("Items View");
-        label.setStyle("-fx-font-size: 24px;");
-        mainContentArea.getChildren().add(label);
+        mainContentArea.getChildren().clear(); // Clear existing content
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("items-view.fxml"));
+            SplitPane itemsView = (SplitPane) loader.load(); // Cast the loaded object to SplitPane
+            mainContentArea.getChildren().add(itemsView); // Add the SplitPane to the AnchorPane
+            AnchorPane.setTopAnchor(itemsView, 0.0); // Ensure the SplitPane fits correctly
+            AnchorPane.setBottomAnchor(itemsView, 0.0);
+            AnchorPane.setLeftAnchor(itemsView, 0.0);
+            AnchorPane.setRightAnchor(itemsView, 0.0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
