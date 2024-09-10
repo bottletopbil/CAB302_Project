@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="035cdb98-6276-402f-aa0b-6a357fbb8b97" name="Changes" comment="Initial commit">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/HelloApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/Item.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/ItemsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/ItemsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/items-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/items-view.fxml" afterDir="false" />
     </list>
@@ -17,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
