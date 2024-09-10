@@ -8,10 +8,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    // Constants defining the window title and size
     public static final String TITLE = "Address Book";
-    public static final int WIDTH = 1280;
-    public static final int HEIGHT = 720;
+    public static final int WIDTH = 1000;  // Increased width to accommodate three panels
+    public static final int HEIGHT = 600;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -26,5 +25,3 @@ public class HelloApplication extends Application {
         launch();
     }
 }
-
-// Comment here !

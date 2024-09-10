@@ -7,24 +7,32 @@
            fx:controller="com.example.addressbook.ItemsController"
            orientation="HORIZONTAL"
            prefHeight="400.0" prefWidth="600.0"
-           dividerPositions="0.15">
+           dividerPositions="0.2, 0.6">
 
-    <!-- Left side menu -->
+    <!-- Left panel: Rooms list -->
     <VBox fx:id="sideMenu" prefWidth="200.0" spacing="1" style="-fx-background-color: #2C2F33;">
         <HBox alignment="CENTER_LEFT" style="-fx-padding: 5 10 5 10;">
-            <Label text="All Folders" style="-fx-font-size: 10px; -fx-text-fill: white;" HBox.hgrow="ALWAYS"/>
-        </HBox>
-        <!-- Rooms menu item -->
-        <HBox fx:id="roomsItem" alignment="CENTER_LEFT" onMouseClicked="#onItemClicked"
-              style="-fx-padding: 5 10 5 10;">
-            <Label text="Rooms" style="-fx-text-fill: white;" HBox.hgrow="ALWAYS"/>
+            <Label text="Rooms" style="-fx-font-size: 14px; -fx-text-fill: white;" HBox.hgrow="ALWAYS"/>
             <Button fx:id="addRoomButton" text="+" onAction="#addNewRoom"
                     style="-fx-background-color: transparent; -fx-text-fill: white;"/>
         </HBox>
+        <ScrollPane fitToWidth="true" style="-fx-background: #2C2F33; -fx-border-color: #2C2F33;">
+            <VBox fx:id="roomsList" spacing="1" style="-fx-background-color: #2C2F33;"/>
+        </ScrollPane>
     </VBox>
 
-    <!-- Main content area -->
-    <AnchorPane fx:id="mainContentArea" prefWidth="400.0">
-        <!-- Content will go here -->
-    </AnchorPane>
+    <!-- Middle panel: Items list -->
+    <VBox fx:id="itemsPanel" style="-fx-background-color: white;">
+        <Label fx:id="selectedRoomLabel" style="-fx-font-size: 16px; -fx-padding: 10;"/>
+        <ListView fx:id="itemsListView" VBox.vgrow="ALWAYS"/>
+    </VBox>
+
+    <!-- Right panel: Item details -->
+    <VBox fx:id="itemDetailsPanel" style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
+        <Label fx:id="itemNameLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <GridPane fx:id="itemDetailsGrid" vgap="5" hgap="10" VBox.vgrow="ALWAYS">
+            <!-- Item details will be added here dynamically -->
+        </GridPane>
+    </VBox>
+
 </SplitPane>
