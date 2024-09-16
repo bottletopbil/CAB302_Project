@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    public static final String TITLE = "Address Book";
+    public static final String TITLE = "addressbook";
     public static final int WIDTH = 1000;  // Increased width to accommodate three panels
     public static final int HEIGHT = 600;
 
