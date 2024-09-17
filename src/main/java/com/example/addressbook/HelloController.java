@@ -23,6 +23,9 @@ public class HelloController {
     private Button loginButton;
 
     @FXML
+    private Button registerBtn;
+
+    @FXML
     public void initialize() {
         termsAndConditions.setText("""
 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -63,7 +66,7 @@ Elementum nibh tellus molestie nunc non blandit massa.""");
 
     @FXML
     protected void onRegisterButtonClick() throws IOException {
-        Stage stage = (Stage) nextButton.getScene().getWindow();
+        Stage stage = (Stage) registerBtn.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("registration-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
