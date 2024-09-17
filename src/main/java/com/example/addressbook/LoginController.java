@@ -27,6 +27,23 @@ public class LoginController {
         String email = emailField.getText();
         String password = passwordField.getText();
 
+        // Validate email and password
+        if (email.isEmpty() || password.isEmpty())
+        {
+            showAlert(Alert.AlertType.ERROR, "Login Error",
+                    "Please enter both email and password.");
+        }
+            else if (!EMAIL_PATTERN.matcher(email).matches()) {
+            showAlert(Alert.AlertType.ERROR, "Invalid Email",
+                    "Please enter a valid email address.");
+        }
+            else {
+            // For now, just show a confirmation alert with email and password
+            showAlert(Alert.AlertType.INFORMATION, "Login Information",
+                    "Email: " + email + "\nPassword: " + password);
+
+        }
+    }
         // still testing, doesnt actually do anything with login data yet
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Login Information");
