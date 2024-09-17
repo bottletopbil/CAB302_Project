@@ -44,7 +44,7 @@ public class LoginController {
 
                 if (hashedPass != null)
                 {
-                    if (hashedPass == password)
+                    if (hashedPass.equals(password))
                     {
                         Stage stage = (Stage) emailField.getScene().getWindow();
                         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
@@ -56,7 +56,7 @@ public class LoginController {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setTitle("Incorrect Details");
                         alert.setHeaderText(null);
-                        alert.setContentText("Incorrect Password, try again.");
+                        alert.setContentText(hashedPass + " - " + password);
                         alert.showAndWait();
                     }
                 }
