@@ -1,25 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.addressbook.DashboardController"
-      prefHeight="400.0" prefWidth="600.0">
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.addressbook.DashboardController"
+      spacing="10" style="-fx-background-color: #2C5364;">
 
-    <!-- Toolbar at the top -->
-    <ToolBar>
-        <Button text="Home" onAction="#showHome" fx:id="homeButton"/>
-        <Button text="Items" onAction="#showItems" fx:id="itemsButton"/>
-        <Button text="Reports" onAction="#showReports" fx:id="reportsButton"/>
-        <Button text="Quick Add" onAction="#showQuickAdd" fx:id="quickAddButton"/>
-    </ToolBar>
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
 
-    <!-- Main content area -->
-    <AnchorPane fx:id="mainContentArea" prefHeight="350.0" prefWidth="600.0">
-        <!-- Content will be dynamically added here -->
-    </AnchorPane>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Dashboard" onAction="#showDashboard" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+        <Button text="Sync" onAction="#showSync" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+        <Button text="All Items" onAction="#showItems" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+        <Button text="Filters" onAction="#showFilters" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="Search" onAction="#showSearch" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+    </HBox>
+
+    <StackPane VBox.vgrow="ALWAYS">
+        <!-- Dashboard Content -->
+        <VBox fx:id="dashboardContent" spacing="10">
+            <Label text="Inventory Dashboard" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
+
+            <TextField promptText="Search..." style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+
+            <HBox spacing="10">
+                <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
+                    <Label text="All Items Catalogued:"/>
+                    <Label fx:id="itemsCountLabel" text="172" style="-fx-font-size: 24px;"/>
+                </VBox>
+                <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
+                    <Label text="Categories:"/>
+                    <Label fx:id="categoriesCountLabel" text="15" style="-fx-font-size: 24px;"/>
+                </VBox>
+                <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
+                    <Label text="Rooms"/>
+                    <Label fx:id="roomsCountLabel" text="4" style="-fx-font-size: 24px;"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
+                <Label text="Total Inventory Value:"/>
+                <Label fx:id="totalValueLabel" text="5012" style="-fx-font-size: 24px;"/>
+            </VBox>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="+" onAction="#handleAddButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;"/>
+                <Button text="🔔" onAction="#handleNotificationButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;"/>
+                <Button text="⚙" onAction="#handleSettingsButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;"/>
+            </HBox>
+        </VBox>
+
+        <!-- Placeholder for other views -->
+        <AnchorPane fx:id="otherContentArea" visible="false" />
+    </StackPane>
 </VBox>

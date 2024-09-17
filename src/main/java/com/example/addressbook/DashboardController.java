@@ -2,72 +2,115 @@ package com.example.addressbook;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.control.SplitPane; // Correct import for SplitPane
+import javafx.scene.layout.VBox;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class DashboardController {
 
     @FXML
-    private AnchorPane mainContentArea; // The main content area where views will be swapped
+    private VBox dashboardContent;
 
     @FXML
-    private Button homeButton;
+    private AnchorPane otherContentArea;
 
     @FXML
-    private Button itemsButton;
+    private Label itemsCountLabel;
 
     @FXML
-    private Button reportsButton;
+    private Label categoriesCountLabel;
 
     @FXML
-    private Button quickAddButton;
+    private Label roomsCountLabel;
+
+    @FXML
+    private Label totalValueLabel;
 
     @FXML
     public void initialize() {
-        // Set default view
-        showHome();
+        updateDashboardValues(172, 15, 4, 5012.00);
     }
 
     @FXML
-    private void showHome() {
-        mainContentArea.getChildren().clear(); // Clear the existing content
-        Label label = new Label("Home View");
-        label.setStyle("-fx-font-size: 24px;");
-        mainContentArea.getChildren().add(label); // Add new content
+    private void showDashboard() {
+        dashboardContent.setVisible(true);
+        otherContentArea.setVisible(false);
+    }
+
+    @FXML
+    private void showSync() {
+        loadOtherView("sync-view.fxml");
     }
 
     @FXML
     private void showItems() {
-        mainContentArea.getChildren().clear(); // Clear existing content
+        loadOtherView("items-view.fxml");
+    }
+
+    @FXML
+    private void showFilters() {
+        loadOtherView("filters-view.fxml");
+    }
+
+    @FXML
+    private void showSearch() {
+        loadOtherView("search-view.fxml");
+    }
+
+    private void loadOtherView(String fxmlFile) {
+        dashboardContent.setVisible(false);
+        otherContentArea.setVisible(true);
+        otherContentArea.getChildren().clear();
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("items-view.fxml"));
-            SplitPane itemsView = (SplitPane) loader.load(); // Cast the loaded object to SplitPane
-            mainContentArea.getChildren().add(itemsView); // Add the SplitPane to the AnchorPane
-            AnchorPane.setTopAnchor(itemsView, 0.0); // Ensure the SplitPane fits correctly
-            AnchorPane.setBottomAnchor(itemsView, 0.0);
-            AnchorPane.setLeftAnchor(itemsView, 0.0);
-            AnchorPane.setRightAnchor(itemsView, 0.0);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Node view = loader.load();
+            otherContentArea.getChildren().add(view);
+            AnchorPane.setTopAnchor(view, 0.0);
+            AnchorPane.setBottomAnchor(view, 0.0);
+            AnchorPane.setLeftAnchor(view, 0.0);
+            AnchorPane.setRightAnchor(view, 0.0);
         } catch (IOException e) {
             e.printStackTrace();
+            showErrorAlert("Error loading view: " + e.getMessage());
         }
     }
 
+    private void showErrorAlert(String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    private void updateDashboardValues(int items, int categories, int rooms, double totalValue) {
+        itemsCountLabel.setText(String.valueOf(items));
+        categoriesCountLabel.setText(String.valueOf(categories));
+        roomsCountLabel.setText(String.valueOf(rooms));
+
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
+        totalValueLabel.setText(currencyFormatter.format(totalValue));
+    }
+
+    // Methods for handling button clicks
     @FXML
-    private void showReports() {
-        mainContentArea.getChildren().clear();
-        Label label = new Label("Reports View");
-        label.setStyle("-fx-font-size: 24px;");
-        mainContentArea.getChildren().add(label);
+    private void handleAddButton() {
+        System.out.println("Add button clicked");
     }
 
     @FXML
-    private void showQuickAdd() {
-        mainContentArea.getChildren().clear();
-        Label label = new Label("Quick Add View");
-        label.setStyle("-fx-font-size: 24px;");
-        mainContentArea.getChildren().add(label);
+    private void handleNotificationButton() {
+        System.out.println("Notification button clicked");
+    }
+
+    @FXML
+    private void handleSettingsButton() {
+        System.out.println("Settings button clicked");
     }
 }
