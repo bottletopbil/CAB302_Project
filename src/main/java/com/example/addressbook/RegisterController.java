@@ -28,7 +28,7 @@ public class RegisterController {
     @FXML
     private void onRegReturnButtonClick() throws IOException {
         Stage stage = (Stage) (returnToTitleBtn) .getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/addressbook/main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/addressbook/hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
