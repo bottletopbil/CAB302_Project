@@ -9,7 +9,7 @@ public class Item {
 
     private String name;
     private String brand;
-    private double price;
+    private float price;
     private String tags;
     private String warranty;
     private int quantity;
@@ -20,7 +20,7 @@ public class Item {
     private String datePurchased;
     private String dateRegistered;
 
-    public Item(String name, String brand, double price, String tags, String warranty, int quantity, String condition, Image photo, String itemDesc, String datePurchased, String dateRegistered) {
+    public Item(String name, String brand, float price, String tags, String warranty, int quantity, String condition, Image photo, String itemDesc, String datePurchased, String dateRegistered) {
         this.name = name;
         this.brand = brand;
         this.price = price;
@@ -49,7 +49,7 @@ public class Item {
     }
     public String getName() { return name; }
     public String getBrand() { return brand; }
-    public double getPrice() { return price; }
+    public float getPrice() { return price; }
     public String getTags() { return tags; }
     public String getWarranty() { return warranty; }
     public int getQuantity() { return quantity; }

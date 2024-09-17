@@ -40,9 +40,9 @@ public class ItemDB {
             );
             insertItem.setInt(1, item.getGroupId());
             insertItem.setInt(2, item.getOwnerId());
-            insertItem.setString(3, item.getItemName());
+            insertItem.setString(3, item.getName());
             insertItem.setString(4, item.getItemDesc());
-            insertItem.setFloat(5, item.getItemPrice());
+            insertItem.setFloat(5, item.getPrice());
             insertItem.setString(6, item.getDatePurchased());
             insertItem.setString(7, item.getDateRegistered());
             insertItem.execute();

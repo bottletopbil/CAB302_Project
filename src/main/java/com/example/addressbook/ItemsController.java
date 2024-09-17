@@ -12,10 +12,11 @@ import javafx.stage.FileChooser;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.File;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.HashMap;
 import java.util.ArrayList;
-
+import java.time.LocalDateTime;
 public class ItemsController {
 
     @FXML private VBox sideMenu;
@@ -260,10 +261,18 @@ public class ItemsController {
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == addButtonType) {
                 try {
-                    double priceValue = Double.parseDouble(price.getText());
+                    float priceValue = Float.parseFloat(price.getText());
                     int quantityValue = Integer.parseInt(quantity.getText());
+                    LocalDateTime now = LocalDateTime.now();
+
+                    // Define the format
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+                    // Format the current date and time
+                    String formattedNow = now.format(formatter);
+                    //TODO: Item Description, Purchased Date, get current Date for Registration Date
                     return new Item(name.getText(), brand.getText(), priceValue, tags.getText(),
-                            warranty.getText(), quantityValue, condition.getValue(), selectedImage[0]);
+                            warranty.getText(), quantityValue, condition.getValue(), selectedImage[0], "", "", formattedNow);
                 } catch (NumberFormatException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Invalid Input");
