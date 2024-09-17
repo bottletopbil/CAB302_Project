@@ -32,4 +32,5 @@
   <Label fx:id="welcomeText"/>
   <Button text="Hello!" onAction="#onHelloButtonClick"/>
   <Button text="Login" onAction="#onLoginButtonClick"/>
+  <Button text="Register" onAction="#onRegisterButtonClick"/>
 </VBox>
