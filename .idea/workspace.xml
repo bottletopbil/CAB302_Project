@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="035cdb98-6276-402f-aa0b-6a357fbb8b97" name="Changes" comment="started on the login screen ui and buttons, as well as text entry(but no data stored yet as db hasnt been setup)">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/HelloController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/RegisterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/RegisterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/Contact.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/IContactDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/MainController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/MockContactDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/main-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
