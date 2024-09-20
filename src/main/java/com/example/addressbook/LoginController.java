@@ -67,6 +67,7 @@ public class LoginController {
             System.err.println(ex.getMessage());
         }
     }
+
     @FXML
     private void onReturnButtonClick() throws IOException {
         Stage stage = (Stage) (returnButton) .getScene().getWindow();

@@ -1,82 +1,61 @@
 package com.example.addressbook;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloController {
-    @FXML
-    private Label welcomeText;
-    @FXML
-    private TextArea termsAndConditions;
-    @FXML
-    private CheckBox agreeCheckBox;
-    @FXML
-    private Button nextButton;
-    @FXML
-    private Button loginButton;
+    @FXML private TextField usernameField;
+    @FXML private PasswordField passwordField;
+    @FXML private Button actionButton;
+    @FXML private Label titleLabel;
+    @FXML private Hyperlink toggleModeLink;
+    @FXML private Hyperlink forgotPasswordLink;
 
-    @FXML
-    private Button registerBtn;
+    private boolean isLoginMode = true;
 
     @FXML
     public void initialize() {
-        termsAndConditions.setText("""
-Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-Eget dolor morbi non arcu risus. Quis lectus nulla at volutpat diam
-ut venenatis tellus in. Feugiat in fermentum posuere urna nec tincidunt
-praesent semper. Turpis tincidunt id aliquet risus feugiat in.
-Libero volutpat sed cras ornare. Facilisi morbi tempus iaculis urna.
-Bibendum est ultricies integer quis auctor. Eu augue ut lectus arcu.
-Tincidunt tortor aliquam nulla facilisi cras fermentum odio eu.
-Gravida neque convallis a cras. Elit ut aliquam purus sit.
-Suspendisse ultrices gravida dictum fusce ut placerat.
-Integer feugiat scelerisque varius morbi enim nunc.
-Amet justo donec enim diam vulputate ut pharetra.
-Sapien pellentesque habitant morbi tristique.
-Lorem sed risus ultricies tristique nulla aliquet.
-Elementum nibh tellus molestie nunc non blandit massa.""");
+        setLoginMode(true);
     }
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to the Address Book Application!");
+    private void onActionButtonClick() throws IOException {
+        if (isLoginMode) {
+            // Perform login
+            System.out.println("Login with: " + usernameField.getText());
+        } else {
+            // Perform registration
+            System.out.println("Register with: " + usernameField.getText());
+            // Here you would normally handle the registration process
+        }
+        // In both cases, switch to the dashboard view
+        switchToDashboardView();
     }
 
     @FXML
-    protected void onAgreeCheckBoxClick() {
-        boolean accepted = agreeCheckBox.isSelected();
-        nextButton.setDisable(!accepted);
+    private void onToggleModeClick() {
+        setLoginMode(!isLoginMode);
     }
 
-    @FXML
-    protected void onNextButtonClick() throws IOException {
-        Stage stage = (Stage) nextButton.getScene().getWindow();
+    private void setLoginMode(boolean loginMode) {
+        isLoginMode = loginMode;
+        titleLabel.setText(loginMode ? "Login" : "Register");
+        actionButton.setText(loginMode ? "LOGIN" : "REGISTER");
+        toggleModeLink.setText(loginMode ? "SIGN UP" : "LOGIN");
+        forgotPasswordLink.setVisible(loginMode);
+    }
+
+    private void switchToDashboardView() throws IOException {
+        Stage stage = (Stage) actionButton.getScene().getWindow();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
+        stage.setWidth(HelloApplication.WIDTH);
+        stage.setHeight(HelloApplication.HEIGHT);
+        stage.centerOnScreen();
     }
-
-    @FXML
-    protected void onRegisterButtonClick() throws IOException {
-        Stage stage = (Stage) registerBtn.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("registration-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
-    }
-    @FXML
-    protected void onLoginButtonClick() throws IOException {
-        Stage stage = (Stage) nextButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
-    }
-
 }
