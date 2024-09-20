@@ -13,7 +13,6 @@ import java.io.IOException;
 
 public class RegisterController {
 
-
     @FXML
     private TextField emailField;
 
@@ -35,7 +34,6 @@ public class RegisterController {
 
     @FXML
     private void onReturnButtonClick() throws IOException {
-
         String email = emailField.getText();
         String password = passwordField.getText();
 
@@ -61,5 +59,4 @@ public class RegisterController {
             System.err.println(ex.getMessage());
         }
     }
-
 }
