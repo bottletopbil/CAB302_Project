@@ -12,7 +12,6 @@ public class DatabaseConnection {
     private static Connection instance = null;
     /**
      * Constructor intializes the connection.
-     */
     private DatabaseConnection() {
         String url = "jdbc:sqlite:database.db";
         try {

@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="035cdb98-6276-402f-aa0b-6a357fbb8b97" name="Changes" comment="started on the login screen ui and buttons, as well as text entry(but no data stored yet as db hasnt been setup)&#10;&#10;added line of code for Refactored email validation">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_09_2024_7_46_pm__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_09_2024_7_46_pm__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/DatabaseConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/LoginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +31,12 @@
     &quot;assignee&quot;: &quot;obtoonie&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/bottletopbil/CAB302_Project",
-    "accountId": "2e5758da-96c2-4245-b4ed-8611a3a69dc1"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/bottletopbil/CAB302_Project&quot;,
+    &quot;accountId&quot;: &quot;2e5758da-96c2-4245-b4ed-8611a3a69dc1&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/example/addressbook/LoginController.java" root0="SKIP_INSPECTION" />
   </component>
@@ -71,9 +72,9 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.37241378",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -107,6 +108,7 @@
       <option name="presentableId" value="Default" />
       <updated>1723536648516</updated>
       <workItem from="1726558305280" duration="2354000" />
+      <workItem from="1726750508315" duration="2642000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
