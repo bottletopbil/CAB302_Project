@@ -74,7 +74,7 @@ public class ItemDB {
         try {
             PreparedStatement getItems = connection.prepareStatement("SELECT * FROM Items");
             ResultSet rs = getItems.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 Items.add(new Item(
                         rs.getInt("id"),
                         rs.getInt("groupId"),

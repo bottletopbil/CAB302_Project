@@ -33,6 +33,7 @@ public class ItemTagDB {
             System.err.println(ex);
         }
     }
+
     public void tagItem(Item item, Tag tag) {
         try {
             PreparedStatement insertItemTag = connection.prepareStatement(
@@ -53,7 +54,7 @@ public class ItemTagDB {
             PreparedStatement getTags = connection.prepareStatement("SELECT * FROM ItemTags WHERE itemId = ?");
             getTags.setInt(1, item.getId());
             ResultSet rs = getTags.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 //Get tag by ID
                 TagDB tagDb = new TagDB();
                 tags.add(tagDb.getTagById(rs.getInt("id")));
@@ -71,7 +72,7 @@ public class ItemTagDB {
             PreparedStatement getItems = connection.prepareStatement("SELECT * FROM ItemTags WHERE tagId = ?");
             getItems.setInt(1, tag.getId());
             ResultSet rs = getItems.executeQuery();
-            if (rs.next()) {
+            while (rs.next()) {
                 //Get tag by ID
                 ItemDB itemDb = new ItemDB();
                 items.add(itemDb.getById(rs.getInt("id")));
