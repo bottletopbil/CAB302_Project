@@ -123,6 +123,9 @@ public class Item {
     public String getTagsToString() {
         //return String.join(",", tags);
         List<String> tagsStr = new ArrayList<>();
+        for (Tag tag: tags) {
+            tagsStr.add(tag.getName());
+        }
         return String.join(",", tagsStr);
     }
     public String getWarranty() { return warranty; }
