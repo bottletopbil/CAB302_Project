@@ -6,4 +6,6 @@ module com.example.addressbook {
 
     opens com.example.addressbook to javafx.fxml;
     exports com.example.addressbook;
+    exports com.example.addressbook.models;
+    opens com.example.addressbook.models to javafx.fxml;
 }
