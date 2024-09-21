@@ -5,29 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a322d651-3783-4804-a2e6-0608bd7c03dd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/ItemDB.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/LoginRegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/RegisterController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/Login-Register-New.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/registration-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/Contact.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/DatabaseConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/DatabaseConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/IContactDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/ItemsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/ItemsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/MainController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/MockContactDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/addressbook/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/addressbook/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/login-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/login-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/addressbook/main-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +39,7 @@
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "feature/categories-tags-management",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -87,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1726832553600</updated>
-      <workItem from="1726832555414" duration="1583000" />
+      <workItem from="1726832555414" duration="10039000" />
     </task>
     <servers />
   </component>
