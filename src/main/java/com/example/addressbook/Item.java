@@ -3,6 +3,7 @@ package com.example.addressbook;
 import javafx.scene.image.*;
 
 import java.io.ByteArrayInputStream;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.awt.image.BufferedImage;
 import javafx.application.Application;
@@ -27,7 +28,7 @@ public class Item {
     private String name;
     private String brand;
     private float price;
-    private String[] tags;
+    private List<Tag> tags = new ArrayList<>();
     private String warranty;
     private int quantity;
     private String condition;
@@ -118,9 +119,11 @@ public class Item {
     public String getName() { return name; }
     public String getBrand() { return brand; }
     public float getPrice() { return price; }
-    public String[] getTags() { return tags; }
+    public List<Tag> getTags() { return tags; }
     public String getTagsToString() {
-        return String.join(",", tags);
+        //return String.join(",", tags);
+        List<String> tagsStr = new ArrayList<>();
+        return String.join(",", tagsStr);
     }
     public String getWarranty() { return warranty; }
     public int getQuantity() { return quantity; }
@@ -169,10 +172,8 @@ public class Item {
     public void setTags() {
         //Access ItemTagDB and get all tags by item, set String Array
         ItemTagDB itemTagDb = new ItemTagDB();
-        String[] tagsArr = new String[0];
-        List<Tag> tags = itemTagDb.getTagsByItem(this);
         //Loop through tags and fill in String array
-        this.tags = tagsArr;
+        this.tags = itemTagDb.getTagsByItem(this);
     }
 
     public void setWarranty(String warranty) {
