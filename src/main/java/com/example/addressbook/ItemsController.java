@@ -117,7 +117,7 @@ public class ItemsController {
 
         addItemDetail("Brand", item.getBrand(), 0);
         addItemDetail("Price", String.format("$%.2f", item.getPrice()), 1);
-        addItemDetail("Tags", item.getTags(), 2);
+        addItemDetail("Tags", item.getTagsToString(), 2);
         addItemDetail("Warranty", item.getWarranty(), 3);
         addItemDetail("Quantity", String.valueOf(item.getQuantity()), 4);
         addItemDetail("Condition", item.getCondition(), 5);
@@ -271,7 +271,9 @@ public class ItemsController {
                     // Format the current date and time
                     String formattedNow = now.format(formatter);
                     //TODO: Item Description, Purchased Date, get current Date for Registration Date
-                    return new Item(name.getText(), brand.getText(), priceValue, tags.getText(),
+                    //TODO: Actual tags integration
+                    String[] tagsArr = new String[0];
+                    return new Item(name.getText(), brand.getText(), priceValue,
                             warranty.getText(), quantityValue, condition.getValue(), selectedImage[0], "", "", formattedNow);
                 } catch (NumberFormatException e) {
                     Alert alert = new Alert(AlertType.ERROR);
