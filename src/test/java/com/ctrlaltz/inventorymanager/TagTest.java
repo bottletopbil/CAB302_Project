@@ -19,4 +19,11 @@ class TagTest {
         tag.setName(newName);
         assertEquals(newName, tag.getName());
     }
+
+    @Test
+    void setDesc() {
+        String newDesc = "Testing setting a new tag description";
+        tag.setDesc(newDesc);
+        assertEquals(newDesc, tag.getDesc());
+    }
 }
