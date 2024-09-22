@@ -33,6 +33,7 @@ public class LoginRegisterController {
         try {
             userDb.insert(new Users(email, password, "temp", "temp", "temp"));
 
+            setLoginStatus(!isLoginState);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Incorrect Details");
             alert.setHeaderText(null);
