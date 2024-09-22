@@ -38,6 +38,7 @@ public class LoginRegisterController {
             alert.setHeaderText(null);
             alert.setContentText("Successfully Registered");
             alert.showAndWait();
+            setLoginStatus(!isLoginState);
         }
         catch (Exception ex)
         {
