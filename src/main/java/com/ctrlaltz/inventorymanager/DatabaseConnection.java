@@ -1,6 +1,5 @@
-package com.example.addressbook;
+package com.ctrlaltz.inventorymanager;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

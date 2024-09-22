@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.example</groupId>
-  <artifactId>address-book</artifactId>
+  <groupId>com.ctrlaltz</groupId>
+  <artifactId>inventorymanager</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>address-book</name>
+  <name>inventorymanager</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -64,7 +64,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.example.addressbook/com.example.addressbook.HelloApplication</mainClass>
+              <mainClass>com.ctrlaltz.inventorymanager.HelloApplication</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>

@@ -1,4 +1,4 @@
-package com.example.addressbook;
+package com.ctrlaltz.inventorymanager;
 
 import java.sql.*;
 import java.util.ArrayList;

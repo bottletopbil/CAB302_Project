@@ -1,4 +1,4 @@
-package com.example.addressbook;
+package com.ctrlaltz.inventorymanager;
 
 public class Tag {
     private int id;

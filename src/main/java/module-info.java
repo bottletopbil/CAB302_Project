@@ -1,4 +1,4 @@
-module com.example.addressbook {
+module com.ctrlaltz.inventorymanager {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
@@ -6,6 +6,6 @@ module com.example.addressbook {
     requires javafx.swing;
 
 
-    opens com.example.addressbook to javafx.fxml;
-    exports com.example.addressbook;
+    opens com.ctrlaltz.inventorymanager to javafx.fxml;
+    exports com.ctrlaltz.inventorymanager;
 }

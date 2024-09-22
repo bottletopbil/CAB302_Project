@@ -1,4 +1,4 @@
-package com.example.addressbook;
+package com.ctrlaltz.inventorymanager;
 
 import javafx.scene.image.*;
 
@@ -6,18 +6,14 @@ import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.awt.image.BufferedImage;
-import javafx.application.Application;
+
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
+
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Base64;
 import java.util.List;
 
 public class Item {
