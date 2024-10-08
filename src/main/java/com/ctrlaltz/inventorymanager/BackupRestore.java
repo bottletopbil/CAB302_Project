@@ -15,15 +15,15 @@ public class BackupRestore {
         backupObj.addProperty("name", backupName);
 
         //Get all Room
-        RoomDB itemGroupDb = new RoomDB();
-        List<Room> rooms = itemGroupDb.getAll();
+        RoomDB roomDb = new RoomDB();
+        List<Room> rooms = roomDb.getAll();
 
         //Iterate through individual Room to get JSON
-        JsonArray itemGroupsArray = new JsonArray();
+        JsonArray roomsArray = new JsonArray();
         for (Room group: rooms) {
-            itemGroupsArray.add(group.toJSON());
+            roomsArray.add(group.toJSON());
         }
-        backupObj.add("rooms", itemGroupsArray);
+        backupObj.add("rooms", roomsArray);
         //Get all Tag JSON
         TagDB tagDb = new TagDB();
         List<Tag> tags = tagDb.getAll();
@@ -43,24 +43,25 @@ public class BackupRestore {
         backupObj.addProperty("name", backupName);
 
         //Get selected Room
-        RoomDB itemGroupDb = new RoomDB();
+        RoomDB roomDb = new RoomDB();
         List<Room> rooms = new ArrayList<>();
 
         for (Integer roomId: roomIds) {
-            rooms.add(itemGroupDb.getGroupById(roomId));
+            rooms.add(roomDb.getGroupById(roomId));
         }
 
         //Iterate through individual Room to get JSON
-        JsonArray itemGroupsArray = new JsonArray();
+        JsonArray roomsArray = new JsonArray();
         for (Room group: rooms) {
-            itemGroupsArray.add(group.toJSON());
+            roomsArray.add(group.toJSON());
         }
-        backupObj.add("rooms", itemGroupsArray);
+        backupObj.add("rooms", roomsArray);
 
         return gson.toJson(backupObj);
     }
 
     public void restoreFromJSON() {
+        //If no relevant tag is found, remove from Item object.
 
     }
 }

@@ -60,11 +60,11 @@ public class Room {
 
     public String toJSON() {
         Gson gson = new Gson();
-        JsonObject itemGroup = new JsonObject();
-        itemGroup.addProperty("id", this.id);
-        itemGroup.addProperty("ownerId", this.ownerId);
-        itemGroup.addProperty("name", this.name);
-        itemGroup.addProperty("dateCreated", this.dateCreated);
+        JsonObject room = new JsonObject();
+        room.addProperty("id", this.id);
+        room.addProperty("ownerId", this.ownerId);
+        room.addProperty("name", this.name);
+        room.addProperty("dateCreated", this.dateCreated);
 
         //Get all Items belonging to group
         ItemDB itemDb = new ItemDB();
@@ -74,8 +74,8 @@ public class Room {
         for (Item item: items) {
             itemsArray.add(item.toJSON());
         }
-        itemGroup.add("items", itemsArray);
+        room.add("items", itemsArray);
 
-        return gson.toJson(itemGroup);
+        return gson.toJson(room);
     }
 }
