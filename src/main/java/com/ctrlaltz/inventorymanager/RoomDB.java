@@ -4,9 +4,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemGroupDB {
+public class RoomDB {
     private Connection connection;
-    public ItemGroupDB() {
+    public RoomDB() {
         connection = DatabaseConnection.getInstance();
     }
 
@@ -27,7 +27,7 @@ public class ItemGroupDB {
         }
     }
 
-    public void insert(ItemGroup group) {
+    public void insert(Room group) {
         try {
             PreparedStatement insertGroup = connection.prepareStatement(
                     "INSERT INTO ItemGroups (groupName, dateCreated, ownerId) VALUES (?, ?, ?)"
@@ -41,7 +41,7 @@ public class ItemGroupDB {
         }
     }
 
-    public void update(ItemGroup group) {
+    public void update(Room group) {
         try {
             PreparedStatement updateGroup = connection.prepareStatement(
                     "UPDATE ItemGroups groupName = ?, dateCreated = ?, ownerId = ? WHERE id = ?"
@@ -68,13 +68,13 @@ public class ItemGroupDB {
         }
     }
 
-    public List<ItemGroup> getAll() {
-        List<ItemGroup> Groups = new ArrayList<>();
+    public List<Room> getAll() {
+        List<Room> Groups = new ArrayList<>();
         try {
             PreparedStatement getItems = connection.prepareStatement("SELECT * FROM ItemGroups");
             ResultSet rs = getItems.executeQuery();
             while (rs.next()) {
-                Groups.add(new ItemGroup(
+                Groups.add(new Room(
                         rs.getInt("id"),
                         rs.getInt("ownerId"),
                         rs.getString("groupName"),
@@ -88,13 +88,13 @@ public class ItemGroupDB {
         return null;
     }
 
-    public ItemGroup getGroupById(int id) {
+    public Room getGroupById(int id) {
         try {
             PreparedStatement getItemGroups = connection.prepareStatement("SELECT * FROM ItemGroups WHERE id = ?");
             getItemGroups.setInt(1, id);
             ResultSet rs = getItemGroups.executeQuery();
             if (rs.next()) {
-                return new ItemGroup(
+                return new Room(
                         rs.getInt("id"),
                         rs.getInt("ownerId"),
                         rs.getString("groupName"),

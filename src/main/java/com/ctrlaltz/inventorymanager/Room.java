@@ -6,20 +6,20 @@ import com.google.gson.JsonObject;
 
 import java.util.List;
 
-public class ItemGroup {
+public class Room {
     private int id;
     private int ownerId;
     private String name;
     private String dateCreated;
 
-    public ItemGroup(int id, int ownerId, String name, String dateCreated) {
+    public Room(int id, int ownerId, String name, String dateCreated) {
         this.id = id;
         this.ownerId = ownerId;
         this.name = name;
         this.dateCreated = dateCreated;
     }
 
-    public ItemGroup(int ownerId, String name, String dateCreated) {
+    public Room(int ownerId, String name, String dateCreated) {
         this.ownerId = ownerId;
         this.name = name;
         this.dateCreated = dateCreated;

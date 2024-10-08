@@ -14,13 +14,13 @@ public class BackupRestore {
 
         backupObj.addProperty("name", backupName);
 
-        //Get all ItemGroup
-        ItemGroupDB itemGroupDb = new ItemGroupDB();
-        List<ItemGroup> itemGroups = itemGroupDb.getAll();
+        //Get all Room
+        RoomDB itemGroupDb = new RoomDB();
+        List<Room> rooms = itemGroupDb.getAll();
 
-        //Iterate through individual ItemGroup to get JSON
+        //Iterate through individual Room to get JSON
         JsonArray itemGroupsArray = new JsonArray();
-        for (ItemGroup group: itemGroups) {
+        for (Room group: rooms) {
             itemGroupsArray.add(group.toJSON());
         }
         backupObj.add("rooms", itemGroupsArray);
@@ -42,17 +42,17 @@ public class BackupRestore {
         JsonObject backupObj = new JsonObject();
         backupObj.addProperty("name", backupName);
 
-        //Get selected ItemGroup
-        ItemGroupDB itemGroupDb = new ItemGroupDB();
-        List<ItemGroup> itemGroups = new ArrayList<>();
+        //Get selected Room
+        RoomDB itemGroupDb = new RoomDB();
+        List<Room> rooms = new ArrayList<>();
 
         for (Integer roomId: roomIds) {
-            itemGroups.add(itemGroupDb.getGroupById(roomId));
+            rooms.add(itemGroupDb.getGroupById(roomId));
         }
 
-        //Iterate through individual ItemGroup to get JSON
+        //Iterate through individual Room to get JSON
         JsonArray itemGroupsArray = new JsonArray();
-        for (ItemGroup group: itemGroups) {
+        for (Room group: rooms) {
             itemGroupsArray.add(group.toJSON());
         }
         backupObj.add("rooms", itemGroupsArray);
