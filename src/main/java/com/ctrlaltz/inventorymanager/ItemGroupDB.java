@@ -41,6 +41,33 @@ public class ItemGroupDB {
         }
     }
 
+    public void update(ItemGroup group) {
+        try {
+            PreparedStatement updateGroup = connection.prepareStatement(
+                    "UPDATE ItemGroups groupName = ?, dateCreated = ?, ownerId = ? WHERE id = ?"
+            );
+            updateGroup.setString(1, group.getName());
+            updateGroup.setString(2, group.getDateCreated());
+            updateGroup.setInt(3, group.getOwnerId());
+            updateGroup.setInt(4, group.getId());
+            updateGroup.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
+    public void delete(int id) {
+        try {
+            PreparedStatement deleteItem = connection.prepareStatement(
+                    "DELETE FROM ItemGroups WHERE id = ?"
+            );
+            deleteItem.setInt(1, id);
+            deleteItem.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
     public List<ItemGroup> getAll() {
         List<ItemGroup> Groups = new ArrayList<>();
         try {
@@ -55,6 +82,25 @@ public class ItemGroupDB {
                 ));
             }
             return Groups;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return null;
+    }
+
+    public ItemGroup getGroupById(int id) {
+        try {
+            PreparedStatement getItemGroups = connection.prepareStatement("SELECT * FROM ItemGroups WHERE id = ?");
+            getItemGroups.setInt(1, id);
+            ResultSet rs = getItemGroups.executeQuery();
+            if (rs.next()) {
+                return new ItemGroup(
+                        rs.getInt("id"),
+                        rs.getInt("ownerId"),
+                        rs.getString("groupName"),
+                        rs.getString("dateCreated")
+                );
+            }
         } catch (SQLException ex) {
             System.err.println(ex);
         }

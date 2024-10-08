@@ -1,5 +1,9 @@
 package com.ctrlaltz.inventorymanager;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import javafx.scene.image.*;
 
 import java.io.ByteArrayInputStream;
@@ -202,5 +206,22 @@ public class Item {
 
     public void setDateRegistered(String dateRegistered) {
         this.dateRegistered = dateRegistered;
+    }
+
+    public String toJSON() {
+        Gson gson = new Gson();
+        JsonElement jsonElement = gson.toJsonTree(this);
+        JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+        //Add tags
+        ItemTagDB itemTagDb = new ItemTagDB();
+        List<Tag> tags = itemTagDb.getTagsByItem(this);
+        JsonArray itemTags = new JsonArray();
+        for (Tag tag: tags) {
+            itemTags.add(tag.getId());
+        }
+        jsonObject.add("tags", itemTags);
+
+        return gson.toJson(jsonObject);
     }
 }

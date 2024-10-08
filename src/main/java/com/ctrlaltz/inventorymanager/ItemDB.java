@@ -62,11 +62,40 @@ public class ItemDB {
     }
 
     public void update(Item item) {
-
+        //UPDATE Items SET groupId = ?, ownerId = ?, itemName = ?, itemBrand = ?, itemPrice = ?, itemWarranty = ?, itemQuantity = ?, itemCondition = ?, photoStr = ?, itemDesc = ?, datePurchased = ?, dateRegistered = ? WHERE  id = ?
+        try {
+            PreparedStatement updateItem = connection.prepareStatement(
+                "UPDATE Items SET groupId = ?, ownerId = ?, itemName = ?, itemBrand = ?, itemPrice = ?, itemWarranty = ?, itemQuantity = ?, itemCondition = ?, photoStr = ?, itemDesc = ?, datePurchased = ?, dateRegistered = ? WHERE id = ?"
+            );
+            updateItem.setInt(1, item.getGroupId());
+            updateItem.setInt(2, item.getOwnerId());
+            updateItem.setString(3, item.getName());
+            updateItem.setString(4, item.getBrand());
+            updateItem.setFloat(5, item.getPrice());
+            updateItem.setString(6, item.getWarranty());
+            updateItem.setInt(7, item.getQuantity());
+            updateItem.setString(8, item.getCondition());
+            updateItem.setString(9, item.getPhotoAsString());
+            updateItem.setString(10, item.getItemDesc());
+            updateItem.setString(11, item.getDatePurchased());
+            updateItem.setString(12, item.getDateRegistered());
+            updateItem.setInt(13, item.getId());
+            updateItem.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
     }
 
     public void delete (int id) {
-
+        try {
+            PreparedStatement deleteItem = connection.prepareStatement(
+              "DELETE FROM Items WHERE id = ?"
+            );
+            deleteItem.setInt(1, id);
+            deleteItem.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
     }
 
     public List<Item> getAll() {
@@ -126,6 +155,35 @@ public class ItemDB {
         return null;
     }
 
+    public List<Item> getByGroupId(int id) {
+        List<Item> Items = new ArrayList<>();
+        try {
+            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM Items WHERE groupId = ?");
+            getItems.setInt(1, id);
+            ResultSet rs = getItems.executeQuery();
+            while (rs.next()) {
+                Items.add(new Item(
+                        rs.getInt("id"),
+                        rs.getInt("groupId"),
+                        rs.getInt("ownerId"),
+                        rs.getString("itemName"),
+                        rs.getString("itemBrand"),
+                        rs.getFloat("itemPrice"),
+                        rs.getString("itemWarranty"),
+                        rs.getInt("itemQuantity"),
+                        rs.getString("itemCondition"),
+                        rs.getString("photoStr"),
+                        rs.getString("itemDesc"),
+                        rs.getString("datePurchased"),
+                        rs.getString("dateRegistered")
+                ));
+            }
+            return Items;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return null;
+    }
     public void close() {
         try {
             connection.close();

@@ -1,5 +1,11 @@
 package com.ctrlaltz.inventorymanager;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import java.util.List;
+
 public class ItemGroup {
     private int id;
     private int ownerId;
@@ -50,5 +56,26 @@ public class ItemGroup {
 
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public String toJSON() {
+        Gson gson = new Gson();
+        JsonObject itemGroup = new JsonObject();
+        itemGroup.addProperty("id", this.id);
+        itemGroup.addProperty("ownerId", this.ownerId);
+        itemGroup.addProperty("name", this.name);
+        itemGroup.addProperty("dateCreated", this.dateCreated);
+
+        //Get all Items belonging to group
+        ItemDB itemDb = new ItemDB();
+        List<Item> items = itemDb.getByGroupId(this.id);
+
+        JsonArray itemsArray = new JsonArray();
+        for (Item item: items) {
+            itemsArray.add(item.toJSON());
+        }
+        itemGroup.add("items", itemsArray);
+
+        return gson.toJson(itemGroup);
     }
 }

@@ -48,6 +48,19 @@ public class ItemTagDB {
         }
     }
 
+    public void removeTag(Item item, Tag tag) {
+        try {
+            PreparedStatement removeItemTag = connection.prepareStatement(
+                    "DELETE FROM ItemTags WHERE itemId = ? AND tagId = ?"
+            );
+            removeItemTag.setInt(1, item.getId());
+            removeItemTag.setInt(2, tag.getId());
+            removeItemTag.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
     public List<Tag> getTagsByItem(Item item) {
         List<Tag> tags = new ArrayList<>();
         try {

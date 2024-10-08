@@ -36,6 +36,32 @@ public class TagDB {
         }
     }
 
+    public void update(Tag tag) {
+        try {
+            PreparedStatement updateTag = connection.prepareStatement(
+                    "UPDATE Tags tagName = ?, tagDesc = ? WHERE id = ?"
+            );
+            updateTag.setString(1, tag.getName());
+            updateTag.setString(2, tag.getDesc());
+            updateTag.setInt(3, tag.getId());
+            updateTag.execute();
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
+    public void delete(int id) {
+        try {
+            PreparedStatement deleteTag = connection.prepareStatement(
+                    "DELETE FROM Tags WHERE id = ?"
+            );
+            deleteTag.setInt(1, id);
+            deleteTag.execute();
+        } catch(SQLException ex) {
+            System.err.println(ex);
+        }
+    }
+
     public Tag getTagById(int id) {
         try {
             PreparedStatement getTag = connection.prepareStatement("SELECT * FROM Tags WHERE id = ?");

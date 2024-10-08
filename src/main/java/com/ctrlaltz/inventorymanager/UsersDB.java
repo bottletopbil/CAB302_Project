@@ -46,11 +46,32 @@ public class UsersDB {
     }
 
     public void update(Users user) {
-
+        try {
+            PreparedStatement updateUser = connection.prepareStatement(
+                    "UPDATE Users userName = ?, hashedPass = ?, firstName = ?, lastName = ?, dateRegistered = ? WHERE id = ?"
+            );
+            updateUser.setString(1, user.getUserName());
+            updateUser.setString(2, user.getHashedPass());
+            updateUser.setString(3, user.getFirstName());
+            updateUser.setString(4, user.getLastName());
+            updateUser.setString(5, user.getdateRegistered());
+            updateUser.setInt(6, user.getId());
+            updateUser.execute();
+        } catch(SQLException ex) {
+            System.err.println(ex);
+        }
     }
 
     public void delete (int id) {
-
+        try {
+            PreparedStatement deleteUser = connection.prepareStatement(
+                    "DELETE FROM Users WHERE id = ?"
+            );
+            deleteUser.setInt(1, id);
+            deleteUser.execute();
+        } catch(SQLException ex) {
+            System.err.println(ex);
+        }
     }
 
     public List<Users> getAll() {
