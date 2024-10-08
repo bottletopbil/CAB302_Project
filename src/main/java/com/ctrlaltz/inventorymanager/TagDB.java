@@ -1,6 +1,8 @@
 package com.ctrlaltz.inventorymanager;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TagDB {
     private Connection connection;
@@ -74,6 +76,25 @@ public class TagDB {
                         rs.getString("tagDesc")
                 );
             }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return null;
+    }
+
+    public List<Tag> getAll() {
+        List<Tag> Tags = new ArrayList<>();
+        try {
+            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM Tags");
+            ResultSet rs = getItems.executeQuery();
+            while (rs.next()) {
+                Tags.add(new Tag(
+                        rs.getInt("id"),
+                        rs.getString("tagName"),
+                        rs.getString("tagDesc")
+                ));
+            }
+            return Tags;
         } catch (SQLException ex) {
             System.err.println(ex);
         }

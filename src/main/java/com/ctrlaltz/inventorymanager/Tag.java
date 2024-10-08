@@ -1,5 +1,7 @@
 package com.ctrlaltz.inventorymanager;
 
+import com.google.gson.Gson;
+
 public class Tag {
     private int id;
     private String name;
@@ -40,5 +42,10 @@ public class Tag {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public String toJSON() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
     }
 }
