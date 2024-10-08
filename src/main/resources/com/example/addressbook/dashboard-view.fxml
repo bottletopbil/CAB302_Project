@@ -5,56 +5,82 @@
 <?import javafx.geometry.Insets?>
 
 <VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.addressbook.DashboardController"
-      spacing="10" style="-fx-background-color: #2C5364;">
+      spacing="10" style="-fx-background-color: white; -fx-pref-width: 300;">
 
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button text="Dashboard" onAction="#showDashboard" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
-        <Button text="Sync" onAction="#showSync" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
-        <Button text="All Items" onAction="#showItems" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
-        <Button text="Filters" onAction="#showFilters" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+    <!-- Navigation buttons -->
+    <HBox spacing="5" alignment="CENTER_LEFT">
+        <Button text="Dashboard" onAction="#showDashboard" style="-fx-background-color: #1DB954; -fx-text-fill: white;"/>
+        <Button text="Sync" onAction="#showSync" style="-fx-background-color: #1DB954; -fx-text-fill: white;"/>
+        <Button text="All Items" onAction="#showItems" style="-fx-background-color: #1DB954; -fx-text-fill: white;"/>
+        <Button text="Filters" onAction="#showFilters" style="-fx-background-color: #1DB954; -fx-text-fill: white;"/>
         <Region HBox.hgrow="ALWAYS" />
-        <Button text="Search" onAction="#showSearch" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+        <Button text="Search" onAction="#showSearch" style="-fx-background-color: #1DB954; -fx-text-fill: white;"/>
+        <Button text="⚙" onAction="#handleSettingsButton" style="-fx-background-color: #1DB954; -fx-text-fill: white;"/>
     </HBox>
 
+    <!-- Main content area with StackPane for view switching -->
     <StackPane VBox.vgrow="ALWAYS">
-        <!-- Dashboard Content -->
-        <VBox fx:id="dashboardContent" spacing="10">
-            <Label text="Inventory Dashboard" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
-
-            <TextField promptText="Search..." style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
-
-            <HBox spacing="10">
-                <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
-                    <Label text="All Items Catalogued:"/>
-                    <Label fx:id="itemsCountLabel" text="172" style="-fx-font-size: 24px;"/>
-                </VBox>
-                <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
-                    <Label text="Categories:"/>
-                    <Label fx:id="categoriesCountLabel" text="15" style="-fx-font-size: 24px;"/>
-                </VBox>
-                <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
-                    <Label text="Rooms"/>
-                    <Label fx:id="roomsCountLabel" text="4" style="-fx-font-size: 24px;"/>
-                </VBox>
+        <!-- Dashboard Content (default view) -->
+        <VBox fx:id="dashboardContent" spacing="16" visible="true">
+            <!-- Dashboard title -->
+            <HBox alignment="CENTER">
+                <Label text="Inventory Dashboard" wrapText="false"
+                       style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: black;"
+                       maxWidth="Infinity" />
             </HBox>
 
-            <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
-                <Label text="Total Inventory Value:"/>
-                <Label fx:id="totalValueLabel" text="5012" style="-fx-font-size: 24px;"/>
-            </VBox>
 
-            <HBox spacing="10" alignment="CENTER_RIGHT">
-                <Button text="+" onAction="#handleAddButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;"/>
-                <Button text="🔔" onAction="#handleNotificationButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;"/>
-                <Button text="⚙" onAction="#handleSettingsButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;"/>
-            </HBox>
+
+            <!-- Spacer -->
+            <Region prefHeight="20" />
+
+            <!-- Grid for dashboard boxes -->
+            <GridPane hgap="10" vgap="50">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+
+                <!-- Total Items box -->
+                <VBox spacing="5" style="-fx-background-color: #2C2C2C; -fx-padding: 10; -fx-background-radius: 10;"
+                      GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="Total Items Catalogued:" style="-fx-text-fill: white;"/>
+                    <Label fx:id="itemsCountLabel" text="172" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
+                </VBox>
+
+                <!-- Rooms box -->
+                <VBox spacing="5" style="-fx-background-color: #2C2C2C; -fx-padding: 10; -fx-background-radius: 10;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="Rooms:" style="-fx-text-fill: white;"/>
+                    <Label fx:id="roomsCountLabel" text="4" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
+                </VBox>
+
+                <!-- Total Inventory Value box -->
+                <VBox spacing="5" style="-fx-background-color: #2C2C2C; -fx-padding: 10; -fx-background-radius: 10;"
+                      GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label text="Total Inventory Value:" style="-fx-text-fill: white;"/>
+                    <Label fx:id="totalValueLabel" text="5,012.00" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
+                </VBox>
+
+                <!-- Categories box -->
+                <VBox spacing="5" style="-fx-background-color: #2C2C2C; -fx-padding: 10; -fx-background-radius: 10;"
+                      GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label text="Categories:" style="-fx-text-fill: white;"/>
+                    <Label fx:id="categoriesCountLabel" text="15" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
+                </VBox>
+            </GridPane>
         </VBox>
 
-        <!-- Placeholder for other views -->
+        <!-- Placeholder for 'All Items' or other content when switching views -->
         <AnchorPane fx:id="otherContentArea" visible="false" />
     </StackPane>
+
 </VBox>
