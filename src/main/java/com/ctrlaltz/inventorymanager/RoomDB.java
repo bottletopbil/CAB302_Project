@@ -88,10 +88,41 @@ public class RoomDB {
         return null;
     }
 
+    /**
+     * Function to get Room by Room ID
+     * @param id - Room ID
+     * @return Room Object
+     */
     public Room getGroupById(int id) {
         try {
             PreparedStatement getItemGroups = connection.prepareStatement("SELECT * FROM ItemGroups WHERE id = ?");
             getItemGroups.setInt(1, id);
+            ResultSet rs = getItemGroups.executeQuery();
+            if (rs.next()) {
+                return new Room(
+                        rs.getInt("id"),
+                        rs.getInt("ownerId"),
+                        rs.getString("groupName"),
+                        rs.getString("dateCreated")
+                );
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return null;
+    }
+
+    /**
+     * Function to get the Room object with ID using a Room Object without ID
+     * @param room - Room Object without ID
+     * @return Room Object with ID
+     */
+    public Room getGroupByProperties(Room room) {
+        try {
+            PreparedStatement getItemGroups = connection.prepareStatement("SELECT * FROM ItemGroups WHERE (groupName = ? AND dateCreated = ? AND ownerId = ?)");
+            getItemGroups.setString(1, room.getName());
+            getItemGroups.setString(2, room.getDateCreated());
+            getItemGroups.setInt(3, room.getOwnerId());
             ResultSet rs = getItemGroups.executeQuery();
             if (rs.next()) {
                 return new Room(

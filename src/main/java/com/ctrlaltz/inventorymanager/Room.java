@@ -12,6 +12,13 @@ public class Room {
     private String name;
     private String dateCreated;
 
+    /**
+     * Constructor to create the Room object based on information gotten from the database
+     * @param id - Room ID
+     * @param ownerId - Owner ID
+     * @param name - Room Name
+     * @param dateCreated - Room Date Created
+     */
     public Room(int id, int ownerId, String name, String dateCreated) {
         this.id = id;
         this.ownerId = ownerId;
@@ -19,6 +26,12 @@ public class Room {
         this.dateCreated = dateCreated;
     }
 
+    /**
+     * Constructor to create the Room object from the frontend or from a backup
+     * @param ownerId - Owner ID
+     * @param name - Room Name
+     * @param dateCreated - Room Date Created
+     */
     public Room(int ownerId, String name, String dateCreated) {
         this.ownerId = ownerId;
         this.name = name;
@@ -57,7 +70,10 @@ public class Room {
     public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
     }
-
+    /**
+     * Function to convert instance of Room as well as all Item stored in the Room to a JSON string
+     * @return JSON string
+     */
     public String toJSON() {
         Gson gson = new Gson();
         JsonObject room = new JsonObject();

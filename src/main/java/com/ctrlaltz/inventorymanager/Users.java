@@ -8,6 +8,15 @@ public class Users {
     private String lastName;
     private String dateRegistered;
 
+    /**
+     * Constructor to create the User object based on information gotten from the database
+     * @param id - User ID
+     * @param userName - Username
+     * @param hashedPass - Hashed and Salted Password (currently just stored in plaintext)
+     * @param firstName - User's First Name
+     * @param lastName - User's Last Name
+     * @param dateRegistered - Date of User Registration
+     */
     public Users(int id, String userName, String hashedPass, String firstName, String lastName, String dateRegistered) {
         this.id = id;
         this.userName = userName;
@@ -16,7 +25,14 @@ public class Users {
         this.lastName = lastName;
         this.dateRegistered = dateRegistered;
     }
-
+    /**
+     * Constructor to create the User object from the frontend
+     * @param userName - Username
+     * @param hashedPass - Hashed and Salted Password (currently just stored in plaintext)
+     * @param firstName - User's First Name
+     * @param lastName - User's Last Name
+     * @param dateRegistered - Date of User Registration
+     */
     public Users(String userName, String hashedPass, String firstName, String lastName, String dateRegistered) {
         this.userName = userName;
         this.hashedPass = hashedPass;

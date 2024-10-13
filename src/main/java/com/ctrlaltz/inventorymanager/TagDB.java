@@ -64,6 +64,11 @@ public class TagDB {
         }
     }
 
+    /**
+     * Function to get Tag Object by ID
+     * @param id - Tag ID
+     * @return Tag Object
+     */
     public Tag getTagById(int id) {
         try {
             PreparedStatement getTag = connection.prepareStatement("SELECT * FROM Tags WHERE id = ?");

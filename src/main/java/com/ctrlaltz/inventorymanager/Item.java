@@ -33,11 +33,29 @@ public class Item {
     private int quantity;
     private String condition;
     private Image photo;
+    private String photoB64;
 
     private String itemDesc;
     private String datePurchased;
     private String dateRegistered;
 
+    /**
+     * Constructor to create the Item object based on information gotten from the database
+     *
+     * @param id - Item ID (Int)
+     * @param groupId - Room ID (Int)
+     * @param ownerId - Owner ID (Int)
+     * @param name - Item Name (String)
+     * @param brand - Item Brand (String)
+     * @param price - Item Price (Float)
+     * @param warranty - Item Warranty (String)
+     * @param quantity - Item Quantity (Int)
+     * @param condition - Item Condition (String)
+     * @param photo - Item Photo (String)
+     * @param itemDesc - Item Description (String)
+     * @param datePurchased - Item Date Purchased (String)
+     * @param dateRegistered - Item Date Registered (String)
+     */
     public Item(int id, int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, String photo, String itemDesc, String datePurchased, String dateRegistered) {
         this.id = id;
         this.groupId = groupId;
@@ -49,13 +67,60 @@ public class Item {
         this.warranty = warranty;
         this.quantity = quantity;
         this.condition = condition;
+        this.photoB64 = photo;
         this.photo = convertBase64ToImage(photo);
 
         this.itemDesc = itemDesc;
         this.datePurchased = datePurchased;
         this.dateRegistered = dateRegistered;
     }
+    /**
+     * Constructor to create the Item object when restoring from backup
+     *
+     * @param groupId - Room ID (Int)
+     * @param ownerId - Owner ID (Int)
+     * @param name - Item Name (String)
+     * @param brand - Item Brand (String)
+     * @param price - Item Price (Float)
+     * @param warranty - Item Warranty (String)
+     * @param quantity - Item Quantity (Int)
+     * @param condition - Item Condition (String)
+     * @param photo - Item Photo (String)
+     * @param itemDesc - Item Description (String)
+     * @param datePurchased - Item Date Purchased (String)
+     * @param dateRegistered - Item Date Registered (String)
+     */
+    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, String photo, String itemDesc, String datePurchased, String dateRegistered) {
+        this.groupId = groupId;
+        this.ownerId = ownerId;
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        //this.tags = tags;
+        this.warranty = warranty;
+        this.quantity = quantity;
+        this.condition = condition;
+        this.photoB64 = photo;
+        this.photo = convertBase64ToImage(photo);
 
+        this.itemDesc = itemDesc;
+        this.datePurchased = datePurchased;
+        this.dateRegistered = dateRegistered;
+    }
+    /**
+     * Constructor to create the Item object from the frontend
+     *
+     * @param name - Item Name (String)
+     * @param brand - Item Brand (String)
+     * @param price - Item Price (Float)
+     * @param warranty - Item Warranty (String)
+     * @param quantity - Item Quantity (Int)
+     * @param condition - Item Condition (String)
+     * @param photo - Item Photo (Image)
+     * @param itemDesc - Item Description (String)
+     * @param datePurchased - Item Date Purchased (String)
+     * @param dateRegistered - Item Date Registered (String)
+     */
     public Item(String name, String brand, float price, String warranty, int quantity, String condition, Image photo, String itemDesc, String datePurchased, String dateRegistered) {
         this.name = name;
         this.brand = brand;
@@ -65,12 +130,18 @@ public class Item {
         this.quantity = quantity;
         this.condition = condition;
         this.photo = photo;
+        this.photoB64 = convertImageToBase64(photo);
 
         this.itemDesc = itemDesc;
         this.datePurchased = datePurchased;
         this.dateRegistered = dateRegistered;
     }
 
+    /**
+     * Function to convert Image class photo to Base64 String
+     * @param image - Image class photo
+     * @return Base64 encoded String version of the photo
+     */
     private String convertImageToBase64(Image image) {
         // Create a WritableImage to hold the image data
         WritableImage writableImage = new WritableImage((int) image.getWidth(), (int) image.getHeight());
@@ -98,6 +169,11 @@ public class Item {
         }
     }
 
+    /**
+     * Function to convert a Base64 encoded photo back to Image
+     * @param base64String - Base64 String containing the image
+     * @return photo in Image class
+     */
     private Image convertBase64ToImage(String base64String) {
         // Decode the Base64 string
         byte[] imageBytes = Base64.getDecoder().decode(base64String);
@@ -120,6 +196,11 @@ public class Item {
     public String getBrand() { return brand; }
     public float getPrice() { return price; }
     public List<Tag> getTags() { return tags; }
+
+    /**
+     * Function to convert the List of Tags to a string containing the Item's tags' names
+     * @return Comma delimited string of tag names
+     */
     public String getTagsToString() {
         //return String.join(",", tags);
         List<String> tagsStr = new ArrayList<>();
@@ -135,7 +216,7 @@ public class Item {
         return photo;
     }
     public String getPhotoAsString() {
-        return convertImageToBase64(photo);
+        return photoB64;
     }
     public String getItemDesc() {
         return itemDesc;
@@ -193,6 +274,7 @@ public class Item {
 
     public void setPhoto(String photoB64) {
         //Convert base64 to Photo
+        this.photoB64 = photoB64;
         this.photo = convertBase64ToImage(photoB64);
     }
 
@@ -208,6 +290,10 @@ public class Item {
         this.dateRegistered = dateRegistered;
     }
 
+    /**
+     * Function to convert instance of Item to a JSON string
+     * @return JSON string
+     */
     public String toJSON() {
         Gson gson = new Gson();
         JsonElement jsonElement = gson.toJsonTree(this);

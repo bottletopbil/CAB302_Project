@@ -79,6 +79,11 @@ public class UsersDB {
         return users;
     }
 
+    /**
+     * Function to get User object by username
+     * @param userName - Username to search
+     * @return User object
+     */
     public Users getByUserName(String userName) {
         try {
             PreparedStatement getAccount = connection.prepareStatement("SELECT * FROM Users WHERE userName = ?");

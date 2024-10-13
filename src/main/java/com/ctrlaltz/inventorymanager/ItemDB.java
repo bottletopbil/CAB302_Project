@@ -127,6 +127,11 @@ public class ItemDB {
         return null;
     }
 
+    /**
+     * Function to get Item by id
+     * @param id Item id
+     * @return Item object with matching ID
+     */
     public Item getById(int id) {
         try {
             PreparedStatement getItem = connection.prepareStatement("SELECT * FROM Items WHERE id = ?");
@@ -155,6 +160,11 @@ public class ItemDB {
         return null;
     }
 
+    /**
+     * Function to get all Items that shares the same Room ID
+     * @param id - ID of the Room that all items are contained in
+     * @return - List of Item that matches the search parameter
+     */
     public List<Item> getByGroupId(int id) {
         List<Item> Items = new ArrayList<>();
         try {

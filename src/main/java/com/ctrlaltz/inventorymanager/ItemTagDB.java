@@ -34,6 +34,11 @@ public class ItemTagDB {
         }
     }
 
+    /**
+     * Function to insert an Item-Tag association
+     * @param item Item to be tagged
+     * @param tag Tag object
+     */
     public void tagItem(Item item, Tag tag) {
         try {
             PreparedStatement insertItemTag = connection.prepareStatement(
@@ -48,6 +53,11 @@ public class ItemTagDB {
         }
     }
 
+    /**
+     * Function to remove an Item-Tag association
+     * @param item Item to have the tag removed
+     * @param tag Tag object
+     */
     public void removeTag(Item item, Tag tag) {
         try {
             PreparedStatement removeItemTag = connection.prepareStatement(
@@ -61,6 +71,11 @@ public class ItemTagDB {
         }
     }
 
+    /**
+     * Function to get all Tags associated with an Item
+     * @param item - Item object
+     * @return List of Tag
+     */
     public List<Tag> getTagsByItem(Item item) {
         List<Tag> tags = new ArrayList<>();
         try {
@@ -79,6 +94,11 @@ public class ItemTagDB {
         return null;
     }
 
+    /**
+     * Function to get all Items associated with a Tag
+     * @param tag - Tag object
+     * @return List of Item
+     */
     public List<Item> getItemsByTag(Tag tag) {
         List<Item> items = new ArrayList<>();
         try {
