@@ -2,6 +2,7 @@ package com.ctrlaltz.inventorymanager;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import java.util.List;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -43,7 +44,21 @@ public class DashboardController {
         UserHolder userHolder = UserHolder.getInstance();
         userId = userHolder.getUser();
 
-        updateDashboardValues(172, 15, 4, 5012.00);
+        RoomDB roomDb = new RoomDB();
+        ItemDB itemDb = new ItemDB();
+
+        int roomCount = roomDb.getRoomsByUserID(userId).size();
+        List<Item> items = itemDb.getItemsByID(userId);
+        int itemCount = items.size();
+        List<Float> prices = itemDb.GetItemPrices(userId);
+        float totalValue = 0;
+
+        for (float price : prices)
+        {
+            totalValue += price;
+        }
+
+        updateDashboardValues(itemCount, 0, roomCount, totalValue);
     }
 
     @FXML

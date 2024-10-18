@@ -156,6 +156,51 @@ public class ItemDB {
         return new ArrayList<>();
     }
 
+    public List<Item> getItemsByID(Integer userId) {
+        List<Item> Items = new ArrayList<>();
+        try {
+            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM Items WHERE ownerId = " + userId);
+            ResultSet rs = getItems.executeQuery();
+            while (rs.next()) {
+                Items.add(new Item(
+                        rs.getInt("id"),
+                        rs.getInt("groupId"),
+                        rs.getInt("ownerId"),
+                        rs.getString("itemName"),
+                        rs.getString("itemBrand"),
+                        rs.getFloat("itemPrice"),
+                        rs.getString("itemWarranty"),
+                        rs.getInt("itemQuantity"),
+                        rs.getString("itemCondition"),
+                        rs.getString("photoStr"),
+                        rs.getString("itemDesc"),
+                        rs.getString("datePurchased"),
+                        rs.getString("dateRegistered")
+                ));
+            }
+            return Items;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return new ArrayList<>();
+    }
+
+    public List<Float> GetItemPrices(Integer userId)
+    {
+        List<Float> prices = new ArrayList<>();
+        try {
+            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM Items WHERE ownerId = " + userId);
+            ResultSet rs = getItems.executeQuery();
+            while (rs.next()) {
+                prices.add(rs.getFloat("itemPrice"));
+            }
+            return prices;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return new ArrayList<>();
+    }
+
     /**
      * Function to get Item by id
      * @param id Item id
