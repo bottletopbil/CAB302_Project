@@ -20,21 +20,21 @@ public class ItemDB {
                             + "groupId INTEGER NOT NULL,"
                             + "ownerId INTEGER NOT NULL,"
                             + "itemName VARCHAR NOT NULL,"
-                            + "itemBrand VARCHAR NOT NULL,"
-                            + "itemPrice FLOAT NOT NULL,"
-                            + "itemWarranty VARCHAR NOT NULL,"
-                            + "itemQuantity INTEGER NOT NULL"
-                            + "itemCondition VARCHAR NOT NULL,"
-                            + "photoStr BLOB NOT NULL,"
-                            + "itemDesc VARCHAR NOT NULL,"
-                            + "datePurchased DATETIME NOT NULL,"
-                            + "dateRegistered DATETIME NOT NULL,"
+                            + "itemBrand VARCHAR,"
+                            + "itemPrice FLOAT,"
+                            + "itemWarranty VARCHAR,"
+                            + "itemQuantity INTEGER NOT NULL,"
+                            + "itemCondition VARCHAR,"
+                            + "photoStr BLOB,"
+                            + "itemDesc VARCHAR,"
+                            + "datePurchased DATETIME,"
+                            + "dateRegistered DATETIME,"
                             + "FOREIGN KEY (groupId) REFERENCES ItemGroups(id),"
                             + "FOREIGN KEY (ownerId) REFERENCES Users(id)"
                             + ")"
             );
         } catch (SQLException ex) {
-            System.err.println(ex);
+            System.err.println("ItemDB Error: " + ex);
         }
     }
 
@@ -125,6 +125,35 @@ public class ItemDB {
             System.err.println(ex);
         }
         return null;
+    }
+
+    public List<Item> getItemsByID(Integer userId, Integer roomId) {
+        List<Item> Items = new ArrayList<>();
+        try {
+            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM Items WHERE ownerId = " + userId + " AND groupId = " + roomId);
+            ResultSet rs = getItems.executeQuery();
+            while (rs.next()) {
+                Items.add(new Item(
+                        rs.getInt("id"),
+                        rs.getInt("groupId"),
+                        rs.getInt("ownerId"),
+                        rs.getString("itemName"),
+                        rs.getString("itemBrand"),
+                        rs.getFloat("itemPrice"),
+                        rs.getString("itemWarranty"),
+                        rs.getInt("itemQuantity"),
+                        rs.getString("itemCondition"),
+                        rs.getString("photoStr"),
+                        rs.getString("itemDesc"),
+                        rs.getString("datePurchased"),
+                        rs.getString("dateRegistered")
+                ));
+            }
+            return Items;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return new ArrayList<>();
     }
 
     /**

@@ -33,7 +33,16 @@ public class DashboardController {
     private Label totalValueLabel;
 
     @FXML
+    private Label lblErr;
+
+    private Integer userId;
+
+    @FXML
     public void initialize() {
+
+        UserHolder userHolder = UserHolder.getInstance();
+        userId = userHolder.getUser();
+
         updateDashboardValues(172, 15, 4, 5012.00);
     }
 
@@ -64,6 +73,7 @@ public class DashboardController {
     }
 
     private void loadOtherView(String fxmlFile) {
+
         dashboardContent.setVisible(false);
         otherContentArea.setVisible(true);
         otherContentArea.getChildren().clear();

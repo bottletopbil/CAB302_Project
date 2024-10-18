@@ -68,8 +68,10 @@ public class Item {
         this.quantity = quantity;
         this.condition = condition;
         this.photoB64 = photo;
-        this.photo = convertBase64ToImage(photo);
 
+        if (photo != null) {
+            this.photo = convertBase64ToImage(photo);
+        }
         this.itemDesc = itemDesc;
         this.datePurchased = datePurchased;
         this.dateRegistered = dateRegistered;
@@ -90,6 +92,25 @@ public class Item {
      * @param datePurchased - Item Date Purchased (String)
      * @param dateRegistered - Item Date Registered (String)
      */
+    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, Image photo, String itemDesc, String datePurchased, String dateRegistered) {
+        this.groupId = groupId;
+        this.ownerId = ownerId;
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        //this.tags = tags;
+        this.warranty = warranty;
+        this.quantity = quantity;
+        this.condition = condition;
+        this.photo = photo;
+        if (photo != null) {
+            this.photoB64 = convertImageToBase64(photo);
+        }
+        this.itemDesc = itemDesc;
+        this.datePurchased = datePurchased;
+        this.dateRegistered = dateRegistered;
+    }
+
     public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, String photo, String itemDesc, String datePurchased, String dateRegistered) {
         this.groupId = groupId;
         this.ownerId = ownerId;
@@ -107,6 +128,7 @@ public class Item {
         this.datePurchased = datePurchased;
         this.dateRegistered = dateRegistered;
     }
+
     /**
      * Constructor to create the Item object from the frontend
      *
@@ -130,8 +152,9 @@ public class Item {
         this.quantity = quantity;
         this.condition = condition;
         this.photo = photo;
-        this.photoB64 = convertImageToBase64(photo);
-
+        if (photo != null) {
+            this.photoB64 = convertImageToBase64(photo);
+        }
         this.itemDesc = itemDesc;
         this.datePurchased = datePurchased;
         this.dateRegistered = dateRegistered;

@@ -71,6 +71,11 @@ public class LoginRegisterController {
                     if (hashedPass.equals(password))
                     {
                         setLoginStatus(!isLoginState);
+
+                        UserHolder loggedUser = UserHolder.getInstance();
+                        Integer userId = userDb.getByUserName(email).getId();
+                        loggedUser.setUser(userId);
+
                         Stage stage = (Stage) usernameField.getScene().getWindow();
                         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("main-view.fxml"));
                         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);

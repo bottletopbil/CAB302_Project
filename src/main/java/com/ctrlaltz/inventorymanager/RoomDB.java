@@ -88,6 +88,41 @@ public class RoomDB {
         return null;
     }
 
+    public List<Room> getRoomsByUserID(Integer userId) {
+        List<Room> Groups = new ArrayList<>();
+        try {
+            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM ItemGroups WHERE ownerId = " + userId);
+            ResultSet rs = getItems.executeQuery();
+            while (rs.next()) {
+                Groups.add(new Room(
+                        rs.getInt("id"),
+                        rs.getInt("ownerId"),
+                        rs.getString("groupName"),
+                        rs.getString("dateCreated")
+                ));
+            }
+            return Groups;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return new ArrayList<>();
+    }
+
+    public Integer getRoomByName(String roomName)
+    {
+        Integer roomId = null;
+        try {
+            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM ItemGroups WHERE groupName = '" + roomName + "'");
+            ResultSet rs = getItems.executeQuery();
+            if (rs.next()) {
+                roomId = rs.getInt("id");
+                return roomId;
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return null;
+    }
     /**
      * Function to get Room by Room ID
      * @param id - Room ID

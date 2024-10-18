@@ -15,6 +15,7 @@ import java.io.File;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 public class ItemsController {
@@ -29,12 +30,45 @@ public class ItemsController {
     @FXML private Label itemNameLabel;
     @FXML private GridPane itemDetailsGrid;
     @FXML private ImageView itemImageView;
+    private Integer userId;
 
     private HBox currentlySelectedRoom;
     private HashMap<String, ArrayList<Item>> roomItems = new HashMap<>();
 
     @FXML
     public void initialize() {
+        UserHolder userHolder = UserHolder.getInstance();
+        userId = userHolder.getUser();
+
+        RoomDB roomDB = new RoomDB();
+        roomDB.initializeTable();
+        ItemDB itemDB = new ItemDB();
+        itemDB.initializeTable();
+
+        List<Room> tempRoomsList = roomDB.getRoomsByUserID(userId);
+        if (!tempRoomsList.isEmpty())
+        {
+            for (Room room : tempRoomsList) {
+
+                System.out.println(room.getName());
+                HBox newRoomHBox = createRoomHBox(room.getName());
+                roomsList.getChildren().add(newRoomHBox);
+                roomItems.put(room.getName(), new ArrayList<>());
+                List<Item> tempItemList = itemDB.getItemsByID(userId, room.getId());
+
+                if (!tempItemList.isEmpty())
+                {
+                    for (Item item : tempItemList)
+                    {
+                        roomItems.get(room.getName()).add(item);
+                        if (selectedRoomLabel.getText().equals(room.getName())) {
+                            updateItemsList(room.getName());
+                        }
+                    }
+                }
+            }
+        }
+
         itemsListView.setCellFactory(param -> new ListCell<Item>() {
             @Override
             protected void updateItem(Item item, boolean empty) {
@@ -59,11 +93,15 @@ public class ItemsController {
         dialog.setHeaderText("Enter room name:");
         dialog.setContentText("Name:");
 
+        RoomDB roomDB = new RoomDB();
+
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(roomName -> {
+            Room room = new Room(userId, roomName, LocalDateTime.now().toString());
             HBox newRoomHBox = createRoomHBox(roomName);
             roomsList.getChildren().add(newRoomHBox);
             roomItems.put(roomName, new ArrayList<>());
+            roomDB.insert(room);
         });
     }
 
@@ -193,6 +231,11 @@ public class ItemsController {
         dialog.setTitle("Add New Item");
         dialog.setHeaderText("Enter item details:");
 
+        RoomDB roomDB = new RoomDB();
+        ItemDB itemDB = new ItemDB();
+        Integer roomID = roomDB.getRoomByName(roomName);
+
+
         // Set the button types
         ButtonType addButtonType = new ButtonType("Add", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(addButtonType, ButtonType.CANCEL);
@@ -273,7 +316,7 @@ public class ItemsController {
                     //TODO: Item Description, Purchased Date, get current Date for Registration Date
                     //TODO: Actual tags integration
                     String[] tagsArr = new String[0];
-                    return new Item(name.getText(), brand.getText(), priceValue,
+                    return new Item(roomID, userId, name.getText(), brand.getText(), priceValue,
                             warranty.getText(), quantityValue, condition.getValue(), selectedImage[0], "", "", formattedNow);
                 } catch (NumberFormatException e) {
                     Alert alert = new Alert(AlertType.ERROR);
@@ -289,6 +332,7 @@ public class ItemsController {
         Optional<Item> result = dialog.showAndWait();
 
         result.ifPresent(item -> {
+            itemDB.insert(item);
             roomItems.get(roomName).add(item);
             if (selectedRoomLabel.getText().equals(roomName)) {
                 updateItemsList(roomName);

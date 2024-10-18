@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.ctrlaltz.inventorymanager.DashboardController"
-      spacing="10" style="-fx-background-color: #2C5364;">
+<VBox spacing="10" style="-fx-background-color: #2C5364;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.ctrlaltz.inventorymanager.DashboardController">
 
     <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
+        <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
 
-    <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button text="Dashboard" onAction="#showDashboard" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
-        <Button text="Sync" onAction="#showSync" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
-        <Button text="All Items" onAction="#showItems" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
-        <Button text="Filters" onAction="#showFilters" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Button onAction="#showDashboard" style="-fx-background-color: #203A43; -fx-text-fill: white;" text="Dashboard" />
+        <Button onAction="#showSync" style="-fx-background-color: #203A43; -fx-text-fill: white;" text="Sync" />
+        <Button onAction="#showItems" style="-fx-background-color: #203A43; -fx-text-fill: white;" text="All Items" />
+        <Button onAction="#showFilters" style="-fx-background-color: #203A43; -fx-text-fill: white;" text="Filters" />
         <Region HBox.hgrow="ALWAYS" />
-        <Button text="Search" onAction="#showSearch" style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+        <Button onAction="#showSearch" style="-fx-background-color: #203A43; -fx-text-fill: white;" text="Search" />
     </HBox>
 
     <StackPane VBox.vgrow="ALWAYS">
         <!-- Dashboard Content -->
         <VBox fx:id="dashboardContent" spacing="10">
-            <Label text="Inventory Dashboard" style="-fx-font-size: 24px; -fx-text-fill: white;"/>
+            <Label style="-fx-font-size: 24px; -fx-text-fill: white;" text="Inventory Dashboard" />
 
-            <TextField promptText="Search..." style="-fx-background-color: #203A43; -fx-text-fill: white;"/>
+            <TextField promptText="Search..." style="-fx-background-color: #203A43; -fx-text-fill: white;" />
 
             <HBox spacing="10">
                 <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
-                    <Label text="All Items Catalogued:"/>
-                    <Label fx:id="itemsCountLabel" text="172" style="-fx-font-size: 24px;"/>
+                    <Label text="All Items Catalogued:" />
+                    <Label fx:id="itemsCountLabel" style="-fx-font-size: 24px;" text="172" />
                 </VBox>
                 <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
-                    <Label text="Categories:"/>
-                    <Label fx:id="categoriesCountLabel" text="15" style="-fx-font-size: 24px;"/>
+                    <Label text="Categories:" />
+                    <Label fx:id="categoriesCountLabel" style="-fx-font-size: 24px;" text="15" />
                 </VBox>
                 <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
-                    <Label text="Rooms"/>
-                    <Label fx:id="roomsCountLabel" text="4" style="-fx-font-size: 24px;"/>
+                    <Label text="Rooms" />
+                    <Label fx:id="roomsCountLabel" style="-fx-font-size: 24px;" text="4" />
                 </VBox>
             </HBox>
 
             <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
-                <Label text="Total Inventory Value:"/>
-                <Label fx:id="totalValueLabel" text="5012" style="-fx-font-size: 24px;"/>
+                <Label text="Total Inventory Value:" />
+                <Label fx:id="totalValueLabel" style="-fx-font-size: 24px;" text="5012" />
             </VBox>
 
-            <HBox spacing="10" alignment="CENTER_RIGHT">
-                <Button text="+" onAction="#handleAddButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;"/>
-                <Button text="🔔" onAction="#handleNotificationButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;"/>
-                <Button text="⚙" onAction="#handleSettingsButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;"/>
+            <HBox alignment="CENTER_RIGHT" spacing="10">
+            <Label fx:id="lblErr" />
+                <Button onAction="#handleAddButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;" text="+" />
+                <Button onAction="#handleNotificationButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;" text="🔔" />
+                <Button onAction="#handleSettingsButton" style="-fx-background-color: white; -fx-text-fill: #2C5364; -fx-font-size: 18px;" text="⚙" />
             </HBox>
         </VBox>
 
