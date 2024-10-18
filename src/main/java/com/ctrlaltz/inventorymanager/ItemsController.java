@@ -50,7 +50,6 @@ public class ItemsController {
         {
             for (Room room : tempRoomsList) {
 
-                System.out.println(room.getName());
                 HBox newRoomHBox = createRoomHBox(room.getName());
                 roomsList.getChildren().add(newRoomHBox);
                 roomItems.put(room.getName(), new ArrayList<>());
@@ -304,7 +303,19 @@ public class ItemsController {
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == addButtonType) {
                 try {
-                    float priceValue = Float.parseFloat(price.getText());
+
+                    float priceValue;
+                    String tempValue = price.getText();
+                    if (tempValue.contains("$"))
+                    {
+                        String filteredString = tempValue.replace("$", "");
+                        priceValue = Float.parseFloat(filteredString);
+                    }
+                    else
+                    {
+                        priceValue = Float.parseFloat(price.getText());
+                    }
+
                     int quantityValue = Integer.parseInt(quantity.getText());
                     LocalDateTime now = LocalDateTime.now();
 

@@ -35,7 +35,7 @@ public class LoginRegisterController {
 
             setLoginStatus(!isLoginState);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Incorrect Details");
+            alert.setTitle("Registration");
             alert.setHeaderText(null);
             alert.setContentText("Successfully Registered");
             alert.showAndWait();
@@ -111,6 +111,13 @@ public class LoginRegisterController {
         } else {
             // Perform registration
             addUser();
+
+            UsersDB userDb = new UsersDB();
+            String email = usernameField.getText();
+            UserHolder userHolder = UserHolder.getInstance();
+            Integer userId = userDb.getByUserName(email).getId();
+            userHolder.setUser(userId);
+
             System.out.println("Register with: " + usernameField.getText());
             // Here you would normally handle the registration process
         }
