@@ -278,6 +278,9 @@ public class ItemsController {
 
         // Image upload handling
         final Image[] selectedImage = {null};
+        final File[] imageFile = {null};
+
+
         uploadPhoto.setOnAction(e -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Select Item Photo");
@@ -288,6 +291,7 @@ public class ItemsController {
             if (selectedFile != null) {
                 selectedImage[0] = new Image(selectedFile.toURI().toString());
                 photoLabel.setText(selectedFile.getName());
+                imageFile[0] = selectedFile;
             }
         });
 
@@ -328,7 +332,7 @@ public class ItemsController {
                     //TODO: Actual tags integration
                     String[] tagsArr = new String[0];
                     return new Item(roomID, userId, name.getText(), brand.getText(), priceValue,
-                            warranty.getText(), quantityValue, condition.getValue(), selectedImage[0], "", "", formattedNow);
+                            warranty.getText(), quantityValue, condition.getValue(), imageFile[0], "", "", formattedNow);
                 } catch (NumberFormatException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Invalid Input");

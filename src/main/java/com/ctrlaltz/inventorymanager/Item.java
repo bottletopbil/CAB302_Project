@@ -7,8 +7,10 @@ import com.google.gson.JsonObject;
 import javafx.scene.image.*;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.nio.file.Files;
 import java.awt.image.BufferedImage;
 
 import javafx.embed.swing.SwingFXUtils;
@@ -92,7 +94,7 @@ public class Item {
      * @param datePurchased - Item Date Purchased (String)
      * @param dateRegistered - Item Date Registered (String)
      */
-    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, Image photo, String itemDesc, String datePurchased, String dateRegistered) {
+    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, File photo, String itemDesc, String datePurchased, String dateRegistered) {
         this.groupId = groupId;
         this.ownerId = ownerId;
         this.name = name;
@@ -102,9 +104,9 @@ public class Item {
         this.warranty = warranty;
         this.quantity = quantity;
         this.condition = condition;
-        this.photo = photo;
-        if (photo != null) {
-            this.photoB64 = convertImageToBase64(photo);
+        this.photo = new Image(photo.toURI().toString());
+        if (photo.toURI().toString() != null) {
+            this.photoB64 = encodeFileToBase64(photo);
         }
         this.itemDesc = itemDesc;
         this.datePurchased = datePurchased;
@@ -143,7 +145,7 @@ public class Item {
      * @param datePurchased - Item Date Purchased (String)
      * @param dateRegistered - Item Date Registered (String)
      */
-    public Item(String name, String brand, float price, String warranty, int quantity, String condition, Image photo, String itemDesc, String datePurchased, String dateRegistered) {
+    public Item(String name, String brand, float price, String warranty, int quantity, String condition, File photo, String itemDesc, String datePurchased, String dateRegistered) {
         this.name = name;
         this.brand = brand;
         this.price = price;
@@ -151,9 +153,9 @@ public class Item {
         this.warranty = warranty;
         this.quantity = quantity;
         this.condition = condition;
-        this.photo = photo;
-        if (photo != null) {
-            this.photoB64 = convertImageToBase64(photo);
+        this.photo = new Image(photo.toURI().toString());
+        if (photo.toURI().toString() != null) {
+            this.photoB64 = encodeFileToBase64(photo);
         }
         this.itemDesc = itemDesc;
         this.datePurchased = datePurchased;
@@ -161,11 +163,25 @@ public class Item {
     }
 
     /**
-     * Function to convert Image class photo to Base64 String
+     * Function to convert File object to Base64 string
+     * @param file - File object
+     * @return Base64 encoded string
+     */
+    private static String encodeFileToBase64(File file) {
+        try {
+            byte[] fileContent = Files.readAllBytes(file.toPath());
+            return Base64.getEncoder().encodeToString(fileContent);
+        } catch (IOException e) {
+            throw new IllegalStateException("could not read file " + file, e);
+        }
+    }
+
+    /**
+     * Function to convert Image class photo to Base64 String - NO LONGER USED
      * @param image - Image class photo
      * @return Base64 encoded String version of the photo
      */
-    private String convertImageToBase64(Image image) {
+    /*private String convertImageToBase64(Image image) {
         // Create a WritableImage to hold the image data
         WritableImage writableImage = new WritableImage((int) image.getWidth(), (int) image.getHeight());
 
@@ -185,12 +201,14 @@ public class Item {
             byte[] imageBytes = outputStream.toByteArray();
 
             // Encode the byte array to Base64
-            return Base64.getEncoder().encodeToString(imageBytes);
+            String imgString = Base64.getEncoder().encodeToString(imageBytes);
+            System.out.println(imgString);
+            return imgString;
         } catch (IOException e) {
             e.printStackTrace();
             return null; // Handle error appropriately in production code
         }
-    }
+    }*/
 
     /**
      * Function to convert a Base64 encoded photo back to Image
