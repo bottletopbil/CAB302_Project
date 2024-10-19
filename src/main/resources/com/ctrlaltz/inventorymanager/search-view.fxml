@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<SplitPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.ctrlaltz.inventorymanager.SearchController"
+           orientation="HORIZONTAL"
+           prefHeight="400.0" prefWidth="600.0"
+           dividerPositions="0.2, 0.6">
+
+    <!-- Left panel: Search Input -->
+    <VBox fx:id="sideMenu" prefWidth="200.0" spacing="1" style="-fx-background-color: #2C2F33;">
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 5 10 5 10;">
+            <TextField promptText="Enter text" style="-fx-font-size: 12px; -fx-text-fill: black;" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" style="-fx-padding: 5 10 5 10;">
+            <Button fx:id="addRoomButton" text="Search" style="-fx-background-color: black; -fx-text-fill: white; -fx-padding: 5 10 5 10;"/>
+        </HBox>
+        <ScrollPane fitToWidth="true" style="-fx-background: #2C2F33; -fx-border-color: #2C2F33;">
+            <VBox fx:id="roomsList" spacing="1" style="-fx-background-color: #2C2F33;"/>
+        </ScrollPane>
+    </VBox>
+
+    <!-- Middle panel: Items list -->
+    <VBox fx:id="itemsPanel" style="-fx-background-color: white;">
+        <Label fx:id="selectedRoomLabel" style="-fx-font-size: 16px; -fx-padding: 10;"/>
+        <ListView fx:id="itemsListView" VBox.vgrow="ALWAYS"/>
+    </VBox>
+
+    <!-- Right panel: Item details -->
+    <VBox fx:id="itemDetailsPanel" style="-fx-background-color: #f0f0f0; -fx-padding: 10;">
+        <Label fx:id="itemNameLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+        <ImageView fx:id="itemImageView" fitWidth="200" fitHeight="200" preserveRatio="true"/>
+        <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+            <GridPane fx:id="itemDetailsGrid" vgap="5" hgap="10">
+                <!-- Item details will be added here dynamically -->
+            </GridPane>
+        </ScrollPane>
+    </VBox>
+
+</SplitPane>
