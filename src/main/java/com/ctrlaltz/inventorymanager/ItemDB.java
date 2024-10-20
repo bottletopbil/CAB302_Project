@@ -268,6 +268,36 @@ public class ItemDB {
         }
         return null;
     }
+    public List<Item> searchLikeName(String searchInput) {
+        List<Item> Items = new ArrayList<>();
+        try {
+            PreparedStatement search = connection.prepareStatement("SELECT * FROM Items WHERE ownerId LIKE ?");
+            search.setString(1, "%" + searchInput + "%");
+            ResultSet rs = search.executeQuery();
+            while (rs.next()) {
+                Items.add(new Item(
+                        rs.getInt("id"),
+                        rs.getInt("groupId"),
+                        rs.getInt("ownerId"),
+                        rs.getString("itemName"),
+                        rs.getString("itemBrand"),
+                        rs.getFloat("itemPrice"),
+                        rs.getString("itemWarranty"),
+                        rs.getInt("itemQuantity"),
+                        rs.getString("itemCondition"),
+                        rs.getString("photoStr"),
+                        rs.getString("itemDesc"),
+                        rs.getString("datePurchased"),
+                        rs.getString("dateRegistered")
+                ));
+            }
+            return Items;
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return new ArrayList<>();
+    }
+
     public void close() {
         try {
             connection.close();

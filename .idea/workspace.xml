@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a322d651-3783-4804-a2e6-0608bd7c03dd" name="Changes" comment="Reworked new login/register screen and connected to database">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/ctrlaltz/inventorymanager/SearchController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/ctrlaltz/inventorymanager/search-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_09_2024_7_46_pm__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_09_2024_7_46_pm__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ctrlaltz/inventorymanager/ItemDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ctrlaltz/inventorymanager/ItemDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ctrlaltz/inventorymanager/SearchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ctrlaltz/inventorymanager/SearchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/ctrlaltz/inventorymanager/search-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/ctrlaltz/inventorymanager/search-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

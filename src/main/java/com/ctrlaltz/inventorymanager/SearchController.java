@@ -9,4 +9,11 @@ import java.io.IOException;
 
 public class SearchController {
     @FXML private TextField searchField;
+    @FXML private Button searchButton;
+
+    @FXML
+    private void onsearchButtonClick(){
+        System.out.println("searchbutton clicked");
+
+    }
 }

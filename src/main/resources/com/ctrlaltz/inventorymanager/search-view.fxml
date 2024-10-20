@@ -13,10 +13,10 @@
     <!-- Left panel: Search Input -->
     <VBox fx:id="sideMenu" prefWidth="200.0" spacing="1" style="-fx-background-color: #2C2F33;">
         <HBox alignment="CENTER_LEFT" style="-fx-padding: 5 10 5 10;">
-            <TextField promptText="Enter text" style="-fx-font-size: 12px; -fx-text-fill: black;" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="searchField" promptText="Enter text" style="-fx-font-size: 12px; -fx-text-fill: black;" HBox.hgrow="ALWAYS"/>
         </HBox>
         <HBox alignment="CENTER_LEFT" style="-fx-padding: 5 10 5 10;">
-            <Button fx:id="addRoomButton" text="Search" style="-fx-background-color: black; -fx-text-fill: white; -fx-padding: 5 10 5 10;"/>
+            <Button fx:id="searchButton" onAction="#onsearchButtonClick" text="Search" style="-fx-background-color: black; -fx-text-fill: white; -fx-padding: 5 10 5 10;"/>
         </HBox>
         <ScrollPane fitToWidth="true" style="-fx-background: #2C2F33; -fx-border-color: #2C2F33;">
             <VBox fx:id="roomsList" spacing="1" style="-fx-background-color: #2C2F33;"/>
