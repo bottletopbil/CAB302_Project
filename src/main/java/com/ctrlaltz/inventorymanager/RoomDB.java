@@ -108,11 +108,13 @@ public class RoomDB {
         return new ArrayList<>();
     }
 
-    public Integer getRoomByName(String roomName)
+    public Integer getRoomByName(String roomName, Integer userId)
     {
         Integer roomId = null;
         try {
-            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM ItemGroups WHERE groupName = '" + roomName + "'");
+            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM ItemGroups WHERE groupName = ? AND ownerId = ? ");
+            getItems.setString(1, roomName);
+            getItems.setInt(2, userId);
             ResultSet rs = getItems.executeQuery();
             if (rs.next()) {
                 roomId = rs.getInt("id");

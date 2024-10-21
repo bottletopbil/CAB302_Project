@@ -50,7 +50,7 @@ public class ItemsController {
         {
             for (Room room : tempRoomsList) {
 
-                HBox newRoomHBox = createRoomHBox(room.getName());
+                HBox newRoomHBox = createRoomHBox(room.getName(), userId);
                 roomsList.getChildren().add(newRoomHBox);
                 roomItems.put(room.getName(), new ArrayList<>());
                 List<Item> tempItemList = itemDB.getItemsByID(userId, room.getId());
@@ -97,19 +97,20 @@ public class ItemsController {
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(roomName -> {
             Room room = new Room(userId, roomName, LocalDateTime.now().toString());
-            HBox newRoomHBox = createRoomHBox(roomName);
+            HBox newRoomHBox = createRoomHBox(roomName, userId);
             roomsList.getChildren().add(newRoomHBox);
             roomItems.put(roomName, new ArrayList<>());
             roomDB.insert(room);
         });
     }
 
-    private HBox createRoomHBox(String roomName) {
+    private HBox createRoomHBox(String roomName, Integer userId) {
         HBox newRoomHBox = new HBox();
         newRoomHBox.setSpacing(10);
         newRoomHBox.setAlignment(Pos.CENTER_LEFT);
         newRoomHBox.setOnMouseClicked(this::onRoomClicked);
         newRoomHBox.setPadding(new javafx.geometry.Insets(5, 10, 5, 10));
+        newRoomHBox.setUserData(userId);
 
         Label roomLabel = new Label(roomName);
         roomLabel.setStyle("-fx-text-fill: white;");
@@ -182,7 +183,7 @@ public class ItemsController {
 
         renameItem.setOnAction(e -> renameRoom(roomLabel));
         deleteItem.setOnAction(e -> deleteRoom(roomHBox));
-        addItemItem.setOnAction(e -> addItemToRoom(roomLabel.getText()));
+        addItemItem.setOnAction(e -> addItemToRoom(roomLabel.getText(), (Integer) roomHBox.getUserData()));
 
         contextMenu.getItems().addAll(renameItem, deleteItem, addItemItem);
         contextMenu.show(roomHBox, javafx.geometry.Side.BOTTOM, 0, 0);
@@ -225,14 +226,14 @@ public class ItemsController {
         }
     }
 
-    private void addItemToRoom(String roomName) {
+    private void addItemToRoom(String roomName, Integer userId) {
         Dialog<Item> dialog = new Dialog<>();
         dialog.setTitle("Add New Item");
         dialog.setHeaderText("Enter item details:");
 
         RoomDB roomDB = new RoomDB();
         ItemDB itemDB = new ItemDB();
-        Integer roomID = roomDB.getRoomByName(roomName);
+        Integer roomID = roomDB.getRoomByName(roomName, userId);
 
 
         // Set the button types

@@ -36,6 +36,7 @@ public class Item {
     private String condition;
     private Image photo;
     private String photoB64;
+    private Boolean hasPhoto;
 
     private String itemDesc;
     private String datePurchased;
@@ -73,11 +74,53 @@ public class Item {
 
         if (photo != null) {
             this.photo = convertBase64ToImage(photo);
+            this.hasPhoto = true;
+        } else {
+            this.hasPhoto = false;
         }
         this.itemDesc = itemDesc;
         this.datePurchased = datePurchased;
         this.dateRegistered = dateRegistered;
     }
+    /**
+     * Constructor to create the Item object from the frontend
+     *
+     * @param groupId - Room ID (Int)
+     * @param ownerId - Owner ID (Int)
+     * @param name - Item Name (String)
+     * @param brand - Item Brand (String)
+     * @param price - Item Price (Float)
+     * @param warranty - Item Warranty (String)
+     * @param quantity - Item Quantity (Int)
+     * @param condition - Item Condition (String)
+     * @param photo - Item Photo (File)
+     * @param itemDesc - Item Description (String)
+     * @param datePurchased - Item Date Purchased (String)
+     * @param dateRegistered - Item Date Registered (String)
+     */
+    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, File photo, String itemDesc, String datePurchased, String dateRegistered) {
+        this.groupId = groupId;
+        this.ownerId = ownerId;
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        //this.tags = tags;
+        this.warranty = warranty;
+        this.quantity = quantity;
+        this.condition = condition;
+        if (photo == null) {
+            this.hasPhoto = false;
+        } else {
+            this.photo = new Image(photo.toURI().toString());
+            this.photoB64 = encodeFileToBase64(photo);
+            this.hasPhoto = true;
+        }
+
+        this.itemDesc = itemDesc;
+        this.datePurchased = datePurchased;
+        this.dateRegistered = dateRegistered;
+    }
+
     /**
      * Constructor to create the Item object when restoring from backup
      *
@@ -94,25 +137,6 @@ public class Item {
      * @param datePurchased - Item Date Purchased (String)
      * @param dateRegistered - Item Date Registered (String)
      */
-    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, File photo, String itemDesc, String datePurchased, String dateRegistered) {
-        this.groupId = groupId;
-        this.ownerId = ownerId;
-        this.name = name;
-        this.brand = brand;
-        this.price = price;
-        //this.tags = tags;
-        this.warranty = warranty;
-        this.quantity = quantity;
-        this.condition = condition;
-        this.photo = new Image(photo.toURI().toString());
-        if (photo.toURI().toString() != null) {
-            this.photoB64 = encodeFileToBase64(photo);
-        }
-        this.itemDesc = itemDesc;
-        this.datePurchased = datePurchased;
-        this.dateRegistered = dateRegistered;
-    }
-
     public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, String photo, String itemDesc, String datePurchased, String dateRegistered) {
         this.groupId = groupId;
         this.ownerId = ownerId;
@@ -124,7 +148,13 @@ public class Item {
         this.quantity = quantity;
         this.condition = condition;
         this.photoB64 = photo;
-        this.photo = convertBase64ToImage(photo);
+
+        if (photo != null) {
+            this.photo = convertBase64ToImage(photo);
+            this.hasPhoto = true;
+        } else {
+            this.hasPhoto = false;
+        }
 
         this.itemDesc = itemDesc;
         this.datePurchased = datePurchased;
@@ -140,7 +170,7 @@ public class Item {
      * @param warranty - Item Warranty (String)
      * @param quantity - Item Quantity (Int)
      * @param condition - Item Condition (String)
-     * @param photo - Item Photo (Image)
+     * @param photo - Item Photo (File)
      * @param itemDesc - Item Description (String)
      * @param datePurchased - Item Date Purchased (String)
      * @param dateRegistered - Item Date Registered (String)
@@ -153,9 +183,12 @@ public class Item {
         this.warranty = warranty;
         this.quantity = quantity;
         this.condition = condition;
-        this.photo = new Image(photo.toURI().toString());
-        if (photo.toURI().toString() != null) {
+        if (photo == null) {
+            this.hasPhoto = false;
+        } else {
+            this.photo = new Image(photo.toURI().toString());
             this.photoB64 = encodeFileToBase64(photo);
+            this.hasPhoto = true;
         }
         this.itemDesc = itemDesc;
         this.datePurchased = datePurchased;

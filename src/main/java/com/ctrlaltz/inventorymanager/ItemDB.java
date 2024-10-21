@@ -130,8 +130,12 @@ public class ItemDB {
     public List<Item> getItemsByID(Integer userId, Integer roomId) {
         List<Item> Items = new ArrayList<>();
         try {
-            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM Items WHERE ownerId = " + userId + " AND groupId = " + roomId);
+            PreparedStatement getItems = connection.prepareStatement("SELECT * FROM Items WHERE ownerId = ? AND groupId = ?");
+            getItems.setInt(1, userId);
+            getItems.setInt(2, roomId);
+            System.out.println(getItems);
             ResultSet rs = getItems.executeQuery();
+
             while (rs.next()) {
                 Items.add(new Item(
                         rs.getInt("id"),
@@ -153,7 +157,7 @@ public class ItemDB {
         } catch (SQLException ex) {
             System.err.println(ex);
         }
-        return new ArrayList<>();
+        return null;
     }
 
     public List<Item> getItemsByID(Integer userId) {
