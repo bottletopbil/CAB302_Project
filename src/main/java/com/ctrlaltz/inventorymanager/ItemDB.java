@@ -271,7 +271,7 @@ public class ItemDB {
     public List<Item> searchLikeName(String searchInput) {
         List<Item> Items = new ArrayList<>();
         try {
-            PreparedStatement search = connection.prepareStatement("SELECT * FROM Items WHERE ownerId LIKE ?");
+            PreparedStatement search = connection.prepareStatement("SELECT * FROM Items WHERE itemName LIKE ?");
             search.setString(1, "%" + searchInput + "%");
             ResultSet rs = search.executeQuery();
             while (rs.next()) {
