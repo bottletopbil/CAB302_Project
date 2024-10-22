@@ -43,7 +43,7 @@ public class ItemDB {
     public void insert(Item item) {
         try {
             PreparedStatement insertItem = connection.prepareStatement(
-                    "INSERT INTO Items (groupId, ownerId, itemName, itemBrand, itemPrice, itemWarranty, itemQuantity, itemCondition, photoStr, itemDesc, itemSerial, purchaseLocation, datePurchased, dateRegistered) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO Items (groupId, ownerId, itemName, itemBrand, itemPrice, itemWarranty, itemQuantity, itemCondition, photoStr, itemDesc, itemSerial, purchaseLocation, datePurchased, dateRegistered) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
             insertItem.setInt(1, item.getGroupId());
             insertItem.setInt(2, item.getOwnerId());
@@ -141,7 +141,6 @@ public class ItemDB {
             PreparedStatement getItems = connection.prepareStatement("SELECT * FROM Items WHERE ownerId = ? AND groupId = ?");
             getItems.setInt(1, userId);
             getItems.setInt(2, roomId);
-            System.out.println(getItems);
             ResultSet rs = getItems.executeQuery();
 
             while (rs.next()) {

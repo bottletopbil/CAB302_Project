@@ -48,6 +48,10 @@ public class ItemsController {
         roomDB.initializeTable();
         ItemDB itemDB = new ItemDB();
         itemDB.initializeTable();
+        TagDB tagDB = new TagDB();
+        tagDB.initializeTable();
+        /*ItemTagDB itDB = new ItemTagDB();
+        itDB.initializeTable();*/
 
         List<Room> tempRoomsList = roomDB.getRoomsByUserID(userId);
         if (!tempRoomsList.isEmpty())
