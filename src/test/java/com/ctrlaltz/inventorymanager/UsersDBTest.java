@@ -13,6 +13,7 @@ class UsersDBTest {
     @BeforeEach
     void setUp() {
         userDb = new UsersDB();
+        userDb.initializeTable();
     }
 
     @Test
