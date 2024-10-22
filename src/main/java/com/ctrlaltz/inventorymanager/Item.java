@@ -59,10 +59,12 @@ public class Item {
      * @param condition - Item Condition (String)
      * @param photo - Item Photo (String)
      * @param itemDesc - Item Description (String)
+     * @param itemSerial - Item Serial (String)
+     * @param purchaseLocation - Item Purchase Location (String)
      * @param datePurchased - Item Date Purchased (String)
      * @param dateRegistered - Item Date Registered (String)
      */
-    public Item(int id, int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, String photo, String itemDesc, String datePurchased, String dateRegistered) {
+    public Item(int id, int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, String photo, String itemDesc, String itemSerial, String purchaseLocation, String datePurchased, String dateRegistered) {
         this.id = id;
         this.groupId = groupId;
         this.ownerId = ownerId;
@@ -82,6 +84,8 @@ public class Item {
             this.hasPhoto = false;
         }
         this.itemDesc = itemDesc;
+        this.itemSerial = itemSerial;
+        this.purchaseLocation = purchaseLocation;
         this.datePurchased = datePurchased;
         this.dateRegistered = dateRegistered;
     }
@@ -98,10 +102,12 @@ public class Item {
      * @param condition - Item Condition (String)
      * @param photo - Item Photo (File)
      * @param itemDesc - Item Description (String)
+     * @param itemSerial - Item Serial (String)
+     * @param purchaseLocation - Item Purchase Location (String)
      * @param datePurchased - Item Date Purchased (String)
      * @param dateRegistered - Item Date Registered (String)
      */
-    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, File photo, String itemDesc, String datePurchased, String dateRegistered, Date purchaseDate, String purchaseLocation, String itemSerial) {
+    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, File photo, String itemDesc, String itemSerial, String purchaseLocation, String datePurchased, String dateRegistered) {
         this.groupId = groupId;
         this.ownerId = ownerId;
         this.name = name;
@@ -120,10 +126,10 @@ public class Item {
         }
 
         this.itemDesc = itemDesc;
+        this.itemSerial = itemSerial;
+        this.purchaseLocation = purchaseLocation;
         this.dateRegistered = dateRegistered;
         this.datePurchased = datePurchased;
-        this.purchaseLocation = purchaseLocation;
-        this.itemSerial = itemSerial;
     }
 
     /**
@@ -139,10 +145,12 @@ public class Item {
      * @param condition - Item Condition (String)
      * @param photo - Item Photo (String)
      * @param itemDesc - Item Description (String)
+     * @param itemSerial - Item Serial (String)
+     * @param purchaseLocation - Item Purchase Location (String)
      * @param datePurchased - Item Date Purchased (String)
      * @param dateRegistered - Item Date Registered (String)
      */
-    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, String photo, String itemDesc, String datePurchased, String dateRegistered) {
+    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, String photo, String itemDesc, String itemSerial, String purchaseLocation, String datePurchased, String dateRegistered) {
         this.groupId = groupId;
         this.ownerId = ownerId;
         this.name = name;
@@ -162,6 +170,8 @@ public class Item {
         }
 
         this.itemDesc = itemDesc;
+        this.itemSerial = itemSerial;
+        this.purchaseLocation = purchaseLocation;
         this.datePurchased = datePurchased;
         this.dateRegistered = dateRegistered;
     }
@@ -177,10 +187,12 @@ public class Item {
      * @param condition - Item Condition (String)
      * @param photo - Item Photo (File)
      * @param itemDesc - Item Description (String)
+     * @param itemSerial - Item Serial (String)
+     * @param purchaseLocation - Item Purchase Location (String)
      * @param datePurchased - Item Date Purchased (String)
      * @param dateRegistered - Item Date Registered (String)
      */
-    public Item(String name, String brand, float price, String warranty, int quantity, String condition, File photo, String itemDesc, String datePurchased, String dateRegistered) {
+    public Item(String name, String brand, float price, String warranty, int quantity, String condition, File photo, String itemDesc, String itemSerial, String purchaseLocation, String datePurchased, String dateRegistered) {
         this.name = name;
         this.brand = brand;
         this.price = price;
@@ -196,6 +208,8 @@ public class Item {
             this.hasPhoto = true;
         }
         this.itemDesc = itemDesc;
+        this.itemSerial = itemSerial;
+        this.purchaseLocation = purchaseLocation;
         this.datePurchased = datePurchased;
         this.dateRegistered = dateRegistered;
     }
@@ -274,6 +288,15 @@ public class Item {
     public String getName() { return name; }
     public String getBrand() { return brand; }
     public float getPrice() { return price; }
+    public Boolean hasPhoto() {
+        return hasPhoto;
+    }
+    public String getItemSerial() {
+        return itemSerial;
+    }
+    public String getPurchaseLocation() {
+        return purchaseLocation;
+    }
     public List<Tag> getTags() { return tags; }
 
     /**
@@ -360,7 +383,12 @@ public class Item {
     public void setItemDesc(String itemDesc) {
         this.itemDesc = itemDesc;
     }
-
+    public void setItemSerial(String itemSerial) {
+        this.itemSerial = itemSerial;
+    }
+    public void setPurchaseLocation(String purchaseLocation) {
+        this.purchaseLocation = purchaseLocation;
+    }
     public void setDatePurchased(String datePurchased) {
         this.datePurchased = datePurchased;
     }

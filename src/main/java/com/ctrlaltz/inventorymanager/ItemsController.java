@@ -12,6 +12,8 @@ import javafx.stage.FileChooser;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.sql.Date;
 import java.time.format.DateTimeFormatter;
@@ -345,11 +347,13 @@ public class ItemsController {
 
                     // Format the current date and time
                     String formattedNow = now.format(formatter);
+                    DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                    String purchaseDateString = df.format(purchaseDate);
                     //TODO: Item Description, Purchased Date, get current Date for Registration Date
                     //TODO: Actual tags integration
                     String[] tagsArr = new String[0];
                     return new Item(roomID, userId, name.getText(), brand.getText(), priceValue,
-                            warranty.getText(), quantityValue, condition.getValue(), imageFile[0], "", "", formattedNow, purchaseDate, purchaseLocation, itemSerial);
+                            warranty.getText(), quantityValue, condition.getValue(), imageFile[0], "", itemSerial, purchaseLocation, purchaseDateString, formattedNow);
                 } catch (NumberFormatException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Invalid Input");

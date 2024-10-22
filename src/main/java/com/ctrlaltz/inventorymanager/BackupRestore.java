@@ -125,9 +125,11 @@ public class BackupRestore {
                 String itemCondition = itemObject.get("condition").getAsString();
                 String itemPhoto = itemObject.get("photoB64").getAsString();
                 String itemDesc = itemObject.get("itemDesc").getAsString();
+                String itemSerial = itemObject.get("itemSerial").getAsString();
+                String purchaseLocation = itemObject.get("purchaseLocation").getAsString();
                 String itemDatePurchased = itemObject.get("datePurchased").getAsString();
                 String itemDateRegistered = itemObject.get("dateRegistered").getAsString();
-                Item item = new Item(roomId, ownerId, itemName, itemBrand, itemPrice, itemWarranty, itemQuantity, itemCondition, itemPhoto, itemDesc, itemDatePurchased, itemDateRegistered);
+                Item item = new Item(roomId, ownerId, itemName, itemBrand, itemPrice, itemWarranty, itemQuantity, itemCondition, itemPhoto, itemDesc, itemSerial, purchaseLocation, itemDatePurchased, itemDateRegistered);
 
                 //Insert into DB
                 ItemDB itemDb = new ItemDB();

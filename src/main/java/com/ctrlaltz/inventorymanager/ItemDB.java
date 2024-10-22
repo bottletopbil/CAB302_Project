@@ -27,7 +27,9 @@ public class ItemDB {
                             + "itemCondition VARCHAR,"
                             + "photoStr BLOB,"
                             + "itemDesc VARCHAR,"
-                            + "datePurchased DATETIME,"
+                            + "itemSerial VARCHAR,"
+                            + "purchaseLocation VARCHAR,"
+                            + "datePurchased DATE,"
                             + "dateRegistered DATETIME,"
                             + "FOREIGN KEY (groupId) REFERENCES ItemGroups(id),"
                             + "FOREIGN KEY (ownerId) REFERENCES Users(id)"
@@ -41,7 +43,7 @@ public class ItemDB {
     public void insert(Item item) {
         try {
             PreparedStatement insertItem = connection.prepareStatement(
-                    "INSERT INTO Items (groupId, ownerId, itemName, itemBrand, itemPrice, itemWarranty, itemQuantity, itemCondition, photoStr, itemDesc, datePurchased, dateRegistered) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO Items (groupId, ownerId, itemName, itemBrand, itemPrice, itemWarranty, itemQuantity, itemCondition, photoStr, itemDesc, itemSerial, purchaseLocation, datePurchased, dateRegistered) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
             );
             insertItem.setInt(1, item.getGroupId());
             insertItem.setInt(2, item.getOwnerId());
@@ -53,8 +55,10 @@ public class ItemDB {
             insertItem.setString(8, item.getCondition());
             insertItem.setString(9, item.getPhotoAsString());
             insertItem.setString(10, item.getItemDesc());
-            insertItem.setString(11, item.getDatePurchased());
-            insertItem.setString(12, item.getDateRegistered());
+            insertItem.setString(11, item.getItemSerial());
+            insertItem.setString(12, item.getPurchaseLocation());
+            insertItem.setString(13, item.getDatePurchased());
+            insertItem.setString(14, item.getDateRegistered());
             insertItem.execute();
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -65,7 +69,7 @@ public class ItemDB {
         //UPDATE Items SET groupId = ?, ownerId = ?, itemName = ?, itemBrand = ?, itemPrice = ?, itemWarranty = ?, itemQuantity = ?, itemCondition = ?, photoStr = ?, itemDesc = ?, datePurchased = ?, dateRegistered = ? WHERE  id = ?
         try {
             PreparedStatement updateItem = connection.prepareStatement(
-                "UPDATE Items SET groupId = ?, ownerId = ?, itemName = ?, itemBrand = ?, itemPrice = ?, itemWarranty = ?, itemQuantity = ?, itemCondition = ?, photoStr = ?, itemDesc = ?, datePurchased = ?, dateRegistered = ? WHERE id = ?"
+                "UPDATE Items SET groupId = ?, ownerId = ?, itemName = ?, itemBrand = ?, itemPrice = ?, itemWarranty = ?, itemQuantity = ?, itemCondition = ?, photoStr = ?, itemDesc = ?, itemSerial = ?, purchaseLocation = ?, datePurchased = ?, dateRegistered = ? WHERE id = ?"
             );
             updateItem.setInt(1, item.getGroupId());
             updateItem.setInt(2, item.getOwnerId());
@@ -77,9 +81,11 @@ public class ItemDB {
             updateItem.setString(8, item.getCondition());
             updateItem.setString(9, item.getPhotoAsString());
             updateItem.setString(10, item.getItemDesc());
-            updateItem.setString(11, item.getDatePurchased());
-            updateItem.setString(12, item.getDateRegistered());
-            updateItem.setInt(13, item.getId());
+            updateItem.setString(11, item.getItemSerial());
+            updateItem.setString(12, item.getPurchaseLocation());
+            updateItem.setString(13, item.getDatePurchased());
+            updateItem.setString(14, item.getDateRegistered());
+            updateItem.setInt(15, item.getId());
             updateItem.execute();
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -116,6 +122,8 @@ public class ItemDB {
                         rs.getString("itemCondition"),
                         rs.getString("photoStr"),
                         rs.getString("itemDesc"),
+                        rs.getString("itemSerial"),
+                        rs.getString("purchaseLocation"),
                         rs.getString("datePurchased"),
                         rs.getString("dateRegistered")
                 ));
@@ -149,6 +157,8 @@ public class ItemDB {
                         rs.getString("itemCondition"),
                         rs.getString("photoStr"),
                         rs.getString("itemDesc"),
+                        rs.getString("itemSerial"),
+                        rs.getString("purchaseLocation"),
                         rs.getString("datePurchased"),
                         rs.getString("dateRegistered")
                 ));
@@ -178,6 +188,8 @@ public class ItemDB {
                         rs.getString("itemCondition"),
                         rs.getString("photoStr"),
                         rs.getString("itemDesc"),
+                        rs.getString("itemSerial"),
+                        rs.getString("purchaseLocation"),
                         rs.getString("datePurchased"),
                         rs.getString("dateRegistered")
                 ));
@@ -228,6 +240,8 @@ public class ItemDB {
                         rs.getString("itemCondition"),
                         rs.getString("photoStr"),
                         rs.getString("itemDesc"),
+                        rs.getString("itemSerial"),
+                        rs.getString("purchaseLocation"),
                         rs.getString("datePurchased"),
                         rs.getString("dateRegistered")
                 );
@@ -262,6 +276,8 @@ public class ItemDB {
                         rs.getString("itemCondition"),
                         rs.getString("photoStr"),
                         rs.getString("itemDesc"),
+                        rs.getString("itemSerial"),
+                        rs.getString("purchaseLocation"),
                         rs.getString("datePurchased"),
                         rs.getString("dateRegistered")
                 ));
@@ -297,6 +313,8 @@ public class ItemDB {
                         rs.getString("itemCondition"),
                         rs.getString("photoStr"),
                         rs.getString("itemDesc"),
+                        rs.getString("itemSerial"),
+                        rs.getString("purchaseLocation"),
                         rs.getString("datePurchased"),
                         rs.getString("dateRegistered")
                 ));
