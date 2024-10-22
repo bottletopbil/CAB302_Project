@@ -126,16 +126,13 @@ public class DashboardController {
     // Methods for handling button clicks
     @FXML
     private void handleAddButton() {
-        System.out.println("Add button clicked");
     }
 
     @FXML
     private void handleNotificationButton() {
-        System.out.println("Notification button clicked");
     }
 
     @FXML
     private void handleSettingsButton() {
-        System.out.println("Settings button clicked");
     }
 }

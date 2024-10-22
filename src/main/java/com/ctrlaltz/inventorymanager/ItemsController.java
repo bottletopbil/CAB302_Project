@@ -12,6 +12,8 @@ import javafx.stage.FileChooser;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.File;
+import java.time.LocalDate;
+import java.sql.Date;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.HashMap;
@@ -252,6 +254,9 @@ public class ItemsController {
         TextField tags = new TextField();
         TextField warranty = new TextField();
         TextField quantity = new TextField();
+        TextField location = new TextField();
+        TextField serial = new TextField();
+        DatePicker date = new DatePicker();
         ComboBox<String> condition = new ComboBox<>(FXCollections.observableArrayList(
                 "New", "Excellent", "Good", "Fair", "Poor"
         ));
@@ -270,10 +275,16 @@ public class ItemsController {
         grid.add(warranty, 1, 4);
         grid.add(new Label("Quantity:"), 0, 5);
         grid.add(quantity, 1, 5);
-        grid.add(new Label("Condition:"), 0, 6);
-        grid.add(condition, 1, 6);
-        grid.add(uploadPhoto, 0, 7);
-        grid.add(photoLabel, 1, 7);
+        grid.add(new Label("Date of Purchase:"), 0, 6);
+        grid.add(date, 1, 6);
+        grid.add(new Label("Location of Purchase:"), 0, 7);
+        grid.add(location, 1, 7);
+        grid.add(new Label("Serial Number: "), 0, 8);
+        grid.add(serial, 1, 8);
+        grid.add(new Label("Condition:"), 0, 9);
+        grid.add(condition, 1, 9);
+        grid.add(uploadPhoto, 0, 10);
+        grid.add(photoLabel, 1, 10);
 
         dialog.getDialogPane().setContent(grid);
 
@@ -321,6 +332,11 @@ public class ItemsController {
                         priceValue = Float.parseFloat(price.getText());
                     }
 
+                    LocalDate localdateValue = date.getValue();
+                    Date purchaseDate = Date.valueOf(localdateValue);
+                    String purchaseLocation = location.getText();
+                    String itemSerial = serial.getText();
+
                     int quantityValue = Integer.parseInt(quantity.getText());
                     LocalDateTime now = LocalDateTime.now();
 
@@ -333,7 +349,7 @@ public class ItemsController {
                     //TODO: Actual tags integration
                     String[] tagsArr = new String[0];
                     return new Item(roomID, userId, name.getText(), brand.getText(), priceValue,
-                            warranty.getText(), quantityValue, condition.getValue(), imageFile[0], "", "", formattedNow);
+                            warranty.getText(), quantityValue, condition.getValue(), imageFile[0], "", "", formattedNow, purchaseDate, purchaseLocation, itemSerial);
                 } catch (NumberFormatException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Invalid Input");

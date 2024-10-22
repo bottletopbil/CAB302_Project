@@ -8,6 +8,7 @@ import javafx.scene.image.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.nio.file.Files;
@@ -40,6 +41,8 @@ public class Item {
 
     private String itemDesc;
     private String datePurchased;
+    private String purchaseLocation;
+    private String itemSerial;
     private String dateRegistered;
 
     /**
@@ -98,7 +101,7 @@ public class Item {
      * @param datePurchased - Item Date Purchased (String)
      * @param dateRegistered - Item Date Registered (String)
      */
-    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, File photo, String itemDesc, String datePurchased, String dateRegistered) {
+    public Item(int groupId, int ownerId, String name, String brand, float price, String warranty, int quantity, String condition, File photo, String itemDesc, String datePurchased, String dateRegistered, Date purchaseDate, String purchaseLocation, String itemSerial) {
         this.groupId = groupId;
         this.ownerId = ownerId;
         this.name = name;
@@ -117,8 +120,10 @@ public class Item {
         }
 
         this.itemDesc = itemDesc;
-        this.datePurchased = datePurchased;
         this.dateRegistered = dateRegistered;
+        this.datePurchased = datePurchased;
+        this.purchaseLocation = purchaseLocation;
+        this.itemSerial = itemSerial;
     }
 
     /**
