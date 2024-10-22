@@ -338,8 +338,10 @@ public class ItemsController {
                         priceValue = Float.parseFloat(price.getText());
                     }
 
+                    Date purchaseDate = Date.valueOf(LocalDate.now());
                     LocalDate localdateValue = date.getValue();
-                    Date purchaseDate = Date.valueOf(localdateValue);
+                    if (localdateValue != null){
+                        purchaseDate = Date.valueOf(localdateValue);}
                     String purchaseLocation = location.getText();
                     String itemSerial = serial.getText();
 
