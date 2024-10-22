@@ -164,7 +164,7 @@ public class ItemsController {
         addItemDetail("Quantity", String.valueOf(item.getQuantity()), 4);
         addItemDetail("Condition", item.getCondition(), 5);
 
-        if (item.getPhoto() != null) {
+        if (item.hasPhoto()) {
             itemImageView.setImage(item.getPhoto());
             itemImageView.setFitWidth(200);
             itemImageView.setFitHeight(200);
