@@ -272,10 +272,16 @@ public class ItemDB {
         }
         return null;
     }
-    public List<Item> searchLikeName(String searchInput) {
+
+    /**
+     * Function to get all Items that share a likeness with searched Name
+     * @param searchInput - String that will be searched to find items with a similar name
+     * @return - List of Item that matches the search parameter
+     */
+    public List<Item> searchLikeName(String searchInput, Integer userid) {
         List<Item> Items = new ArrayList<>();
         try {
-            PreparedStatement search = connection.prepareStatement("SELECT * FROM Items WHERE itemName LIKE ?");
+            PreparedStatement search = connection.prepareStatement("SELECT * FROM Items WHERE ownerId = "+ userid + " AND itemName LIKE ?");
             search.setString(1, "%" + searchInput + "%");
             ResultSet rs = search.executeQuery();
             while (rs.next()) {
