@@ -15,9 +15,9 @@ public class TagDB {
             Statement createTable = connection.createStatement();
             createTable.execute(
                     "CREATE TABLE IF NOT EXISTS Tags ("
-                            + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                            + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                             + "tagName VARCHAR NOT NULL UNIQUE,"
-                            + "tagDesc VARCHAR NOT NULL,"
+                            + "tagDesc VARCHAR NOT NULL"
                             + ")"
             );
         } catch (SQLException ex) {
