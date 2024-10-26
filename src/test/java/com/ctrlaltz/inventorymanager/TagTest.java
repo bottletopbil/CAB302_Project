@@ -17,9 +17,7 @@ class TagTest {
     void setUp() {
         tag = new Tag("TestTag", "This is a test tag");
         tagDb = new TagDB();
-        tagDb.initializeTable();
         itemDb = new ItemDB();
-        itemDb.initializeTable();
         //tagDb.insert(tag);
     }
 
@@ -27,7 +25,6 @@ class TagTest {
     void setName() {
         String newName = "TestTag2";
         tag.setName(newName);
-        tagDb.update(tag);
         assertEquals(newName, tag.getName());
     }
 
@@ -35,7 +32,6 @@ class TagTest {
     void setDesc() {
         String newDesc = "Testing setting a new tag description";
         tag.setDesc(newDesc);
-        tagDb.update(tag);
         assertEquals(newDesc, tag.getDesc());
     }
 
