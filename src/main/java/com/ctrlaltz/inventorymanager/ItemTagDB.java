@@ -108,7 +108,7 @@ public class ItemTagDB {
             while (rs.next()) {
                 //Get tag by ID
                 ItemDB itemDb = new ItemDB();
-                items.add(itemDb.getById(rs.getInt("id")));
+                items.add(itemDb.getById(rs.getInt("itemId")));
             }
             return items;
         } catch (SQLException ex) {
