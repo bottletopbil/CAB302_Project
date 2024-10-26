@@ -87,6 +87,24 @@ public class TagDB {
         return null;
     }
 
+    public Tag getTagByName(String name) {
+        try {
+            PreparedStatement getTag = connection.prepareStatement("SELECT * FROM Tags WHERE tagName = ?");
+            getTag.setString(1, name);
+            ResultSet rs = getTag.executeQuery();
+            if (rs.next()) {
+                return new Tag(
+                        rs.getInt("id"),
+                        rs.getString("tagName"),
+                        rs.getString("tagDesc")
+                );
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+        return null;
+    }
+
     public List<Tag> getAll() {
         List<Tag> Tags = new ArrayList<>();
         try {
