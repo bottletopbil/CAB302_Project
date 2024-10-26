@@ -20,8 +20,6 @@ class TagTest {
         tagDb = new TagDB();
         tagDb.initializeTable();
         tagDb.insert(tag);
-        itemTagDb = new ItemTagDB();
-        itemTagDb.initializeTable();
     }
 
     @Test
@@ -42,6 +40,8 @@ class TagTest {
 
     @Test
     void tagItem() {
+        itemTagDb = new ItemTagDB();
+        itemTagDb.initializeTable();
         itemTagDb.removeTag(item, tag);
         itemTagDb.tagItem(item, tag);
         List<Item> items = itemTagDb.getItemsByTag(tag);
