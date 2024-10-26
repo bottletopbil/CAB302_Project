@@ -25,7 +25,7 @@ public class ItemTagDB {
                     "CREATE TABLE IF NOT EXISTS ItemTags ("
                             + "itemId INTEGER NOT NULL REFERENCES Items(id), "
                             + "tagId INTEGER NOT NULL REFERENCES Tags(id),"
-                            + "dateTagged DATETIME NOT NULL"
+                            + "dateTagged DATETIME NOT NULL,"
                             + "PRIMARY KEY (itemId, tagId)"
                             + ")"
             );

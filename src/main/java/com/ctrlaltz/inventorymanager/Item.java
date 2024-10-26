@@ -120,7 +120,7 @@ public class Item {
         if (photo == null) {
             this.hasPhoto = false;
         } else {
-            this.photo = new Image(photo.toURI().toString());
+            //this.photo = new Image(photo.toURI().toString());
             this.photoB64 = encodeFileToBase64(photo);
             this.hasPhoto = true;
         }
@@ -163,7 +163,7 @@ public class Item {
         this.photoB64 = photo;
 
         if (photo != null) {
-            this.photo = convertBase64ToImage(photo);
+            //this.photo = convertBase64ToImage(photo);
             this.hasPhoto = true;
         } else {
             this.hasPhoto = false;
@@ -203,7 +203,7 @@ public class Item {
         if (photo == null) {
             this.hasPhoto = false;
         } else {
-            this.photo = new Image(photo.toURI().toString());
+            //this.photo = new Image(photo.toURI().toString());
             this.photoB64 = encodeFileToBase64(photo);
             this.hasPhoto = true;
         }
@@ -275,6 +275,9 @@ public class Item {
         return new Image(new ByteArrayInputStream(imageBytes));
     }
 
+    public void initializePhoto() {
+        this.photo = convertBase64ToImage(this.photoB64);
+    }
     // Getters
     public int getId() {
         return id;

@@ -356,8 +356,10 @@ public class ItemsController {
                     //TODO: Item Description, Purchased Date, get current Date for Registration Date
                     //TODO: Actual tags integration
                     String[] tagsArr = new String[0];
-                    return new Item(roomID, userId, name.getText(), brand.getText(), priceValue,
+                    Item newItem = new Item(roomID, userId, name.getText(), brand.getText(), priceValue,
                             warranty.getText(), quantityValue, condition.getValue(), imageFile[0], "", itemSerial, purchaseLocation, purchaseDateString, formattedNow);
+                    newItem.initializePhoto();
+                    return newItem;
                 } catch (NumberFormatException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Invalid Input");
