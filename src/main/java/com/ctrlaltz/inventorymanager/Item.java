@@ -229,40 +229,6 @@ public class Item {
     }
 
     /**
-     * Function to convert Image class photo to Base64 String - NO LONGER USED
-     * @param image - Image class photo
-     * @return Base64 encoded String version of the photo
-     */
-    /*private String convertImageToBase64(Image image) {
-        // Create a WritableImage to hold the image data
-        WritableImage writableImage = new WritableImage((int) image.getWidth(), (int) image.getHeight());
-
-        // Read the pixels from the original image and write them to the WritableImage
-        PixelReader pixelReader = image.getPixelReader();
-        if (pixelReader != null) {
-            writableImage.getPixelWriter().setPixels(0, 0, (int) image.getWidth(), (int) image.getHeight(), pixelReader, 0, (int) image.getWidth());
-        }
-
-        // Convert WritableImage to BufferedImage
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(writableImage, null);
-
-        // Write BufferedImage to ByteArrayOutputStream
-        try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
-            // Choose the image format (e.g., "png" or "jpeg")
-            ImageIO.write(bufferedImage, "png", outputStream);
-            byte[] imageBytes = outputStream.toByteArray();
-
-            // Encode the byte array to Base64
-            String imgString = Base64.getEncoder().encodeToString(imageBytes);
-            System.out.println(imgString);
-            return imgString;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null; // Handle error appropriately in production code
-        }
-    }*/
-
-    /**
      * Function to convert a Base64 encoded photo back to Image
      * @param base64String - Base64 String containing the image
      * @return photo in Image class

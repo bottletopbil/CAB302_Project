@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox spacing="10" style="-fx-background-color: #2C5364;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.ctrlaltz.inventorymanager.DashboardController">
+<VBox spacing="10" style="-fx-background-color: #2C5364;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ctrlaltz.inventorymanager.DashboardController">
 
     <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
@@ -12,9 +12,7 @@
 
     <HBox alignment="CENTER_LEFT" spacing="10">
         <Button onAction="#showDashboard" style="-fx-background-color: #203A43; -fx-text-fill: white;" text="Dashboard" />
-        <Button onAction="#showSync" style="-fx-background-color: #203A43; -fx-text-fill: white;" text="Sync" />
         <Button onAction="#showItems" style="-fx-background-color: #203A43; -fx-text-fill: white;" text="All Items" />
-        <Button onAction="#showFilters" style="-fx-background-color: #203A43; -fx-text-fill: white;" text="Filters" />
         <Region HBox.hgrow="ALWAYS" />
         <Button onAction="#showSearch" style="-fx-background-color: #203A43; -fx-text-fill: white;" text="Search" />
     </HBox>
@@ -24,7 +22,7 @@
         <VBox fx:id="dashboardContent" spacing="10">
             <Label style="-fx-font-size: 24px; -fx-text-fill: white;" text="Inventory Dashboard" />
 
-            <TextField promptText="Search..." style="-fx-background-color: #203A43; -fx-text-fill: white;" />
+            <TextField style="-fx-background-color: #203A43; -fx-text-fill: white;" />
 
             <HBox spacing="10">
                 <VBox spacing="5" style="-fx-background-color: white; -fx-padding: 10;">
